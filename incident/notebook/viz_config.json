@@ -1,0 +1,23 @@
+{
+"identity": {
+    "embeddedRelationships": [
+        ["extensions.extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498.email_addresses.email_address_ref", "email-address-of", false],
+        ["extensions.extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498.social_media_accounts.user_account_ref", "social-media-account-of", false]
+    ]
+},
+"incident": {
+    "embeddedRelationships": [
+        ["extensions.extension-definition--ef765651-680c-498d-9894-99799f2fa126.attacker_activities.pattern_ref", "includes", true],
+        ["extensions.extension-definition--ef765651-680c-498d-9894-99799f2fa126.attacker_activities.impacted_refs", "impacts", true],
+        ["extensions.extension-definition--ef765651-680c-498d-9894-99799f2fa126.attacker_activities.observed_refs", "includes", true],
+        ["extensions.extension-definition--ef765651-680c-498d-9894-99799f2fa126.availability_impacts.impacted_refs", "impacts", true],
+        ["extensions.extension-definition--ef765651-680c-498d-9894-99799f2fa126.confidentiality_impacts.impacted_refs", "impacts", true],
+        ["extensions.extension-definition--ef765651-680c-498d-9894-99799f2fa126.defender_activities.identity_refs", "involved-in", false],
+        ["extensions.extension-definition--ef765651-680c-498d-9894-99799f2fa126.defender_activities.impacted_refs", "impacts", true],
+        ["extensions.extension-definition--ef765651-680c-498d-9894-99799f2fa126.defender_activities.object_ref", "includes", true],
+        ["extensions.extension-definition--ef765651-680c-498d-9894-99799f2fa126.external_impacts.impacted_refs", "impacts", true],
+        ["extensions.extension-definition--ef765651-680c-498d-9894-99799f2fa126.integrity_impacts.impacted_refs", "impacts", true],
+        ["extensions.extension-definition--ef765651-680c-498d-9894-99799f2fa126.physical_impacts.impacted_refs", "impacts", true]
+    ]
+}
+}

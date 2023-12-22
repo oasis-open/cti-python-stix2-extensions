@@ -1,0 +1,974 @@
+{
+    "incident": {
+        "type": "object",
+        "import": "common-properties",
+        "required": [
+            "id",
+            "type",
+            "name",
+            "extensions"
+        ],
+        "properties": {
+            "type": "incident",
+            "id": {
+                "type": "string",
+                "semantics": "stix-id",
+                "stix-type": "incident"
+            },
+            "name": {
+                "type": "string",
+                "semantics": "word"
+            },
+            "description": {
+                "type": "string",
+                "semantics": "sentence"
+            },
+            "extensions": {
+                "type": "object",
+                "required": [
+                    "extension-definition--ef765651-680c-498d-9894-99799f2fa126"
+                ],
+                "properties": {
+                    "extension-definition--ef765651-680c-498d-9894-99799f2fa126": {
+                        "type": "object",
+                        "ref": "incident-ext"
+                    }
+                }
+            }
+        }
+    },
+    "incident-ext": {
+        "type": "object",
+        "required": [
+            "extension_type",
+            "determination",
+            "investigation_status"
+        ],
+        "properties": {
+            "extension_type": "property-extension",
+            "determination": {
+                "type": "string",
+                "ref": "incident-determination-enum"
+            },
+            "investigation_status": {
+                "type": "string",
+                "ref": "incident-investigation-ov"
+            },
+            "attacker_activities": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "ref": "attacker-activity"
+                }
+            },
+            "availability_impacts": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "ref": "availability-impact"
+                }
+            },
+            "confidentiality_impacts": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "ref": "confidentiality-impact"
+                }
+            },
+            "criticality": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+            },
+            "defender_activities": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "ref": "defender-activity"
+                }
+            },
+            "detection_methods": {
+                "type": "string",
+                "ref": "detection-methods-ov"
+            },
+            "external_impact": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "ref": "external-impact"
+                }
+            },
+            "impacted_entity_counts": {
+               "type": "object",
+                "ref": "entity-count"
+            },
+            "incident_types": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "ref": "incident-type-ov"
+                }
+            },
+            "integrity_impacts": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "ref": "integrity-impact"
+                }
+            },
+            "monetary_impacts": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "ref": "monetary-impact"
+                }
+            },
+            "overall_availability_impact": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+            },
+            "physical_impacts": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "ref": "physical-impact"
+                }
+            },
+            "recoverability": {
+                "type": "string",
+                "ref": "recoverability-enum"
+            },
+            "scores": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "ref": "incident-score"
+                }
+            },
+            "traceability_impact": {
+                "type": "string",
+                "ref": "traceability-enum"
+            }
+        }
+    },
+
+    "attacker-activity": {
+        "type": "object",
+        "required": [
+            "outcome"
+        ],
+        "properties": {
+            "outcome": {
+                "type": "string",
+                "ref": "activity-outcome-enum"
+            },
+            "description": {
+                "type": "string",
+                "semantics": "sentence"
+            },
+            "goal": {
+                "type": "string",
+                "semantics": "sentence"
+            },
+            "kill_chain_phases": {
+                "type": "array",
+                "ref": "kill-chain-phases"
+            },
+            "pattern_ref": {
+                "type": "string",
+                "semantics": "stix-id",
+                "stix-type": "attack-pattern"
+            },
+            "start_time": {
+                "type": "string",
+                "semantics": "stix-timestamp"
+            },
+            "start_time_fidelity": {
+                "type": "string",
+                "ref": "timestamp-fidelity-enum"
+            },
+            "end_time": {
+                "type": "string",
+                "semantics": "stix-timestamp"
+            },
+            "end_time_fidelity": {
+                "type": "string",
+                "ref": "timestamp-fidelity-enum"
+            },
+            "impacted_refs": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "ref": "impacted-ref"
+                }
+            },
+            "observed_refs": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "oneOf": [
+                        {
+                            "type": "string",
+                            "semantics": "stix-id",
+                            "stix-type": "indicator"
+                        },
+                        {
+                            "type": "string",
+                            "semantics": "stix-id",
+                            "stix-type": "observed-data"
+                        },
+                        {
+                            "type": "string",
+                            "semantics": "stix-id",
+                            "stix-type": "sighting"
+                        },
+                        {
+                            "type": "string",
+                            "ref": "sco-identifier"
+                        },
+                        {
+                            "type": "string",
+                            "ref": "sdo-identifier"
+                        }
+                    ]
+                }
+            },
+            "sequence_start": {
+                "type": "integer"
+            },
+            "sequence_end": {
+                "type": "integer"
+            }
+        }
+    },
+    "availability-impact": {
+        "type": "object",
+        "required": [
+            "availability_impact",
+            "impacted_refs"
+        ],
+        "properties": {
+            "availability_impact": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+            },
+            "description": {
+                "type": "string",
+                "semantics": "sentence"
+            },
+            "impacted_refs": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "ref": "impacted-ref"
+                }
+            },
+            "recoverability": {
+                "type": "string",
+                "ref": "recoverability-enum"
+            }
+        }
+    },
+    "confidentiality-impact": {
+        "type": "object",
+        "required": [
+            "loss_type"
+        ],
+        "properties": {
+            "description": {
+                "type": "string",
+                "semantics": "sentence"
+            },
+            "information_type": {
+                "type": "string",
+                "ref": "information-type-ov"
+            },
+            "impacted_refs": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "ref": "impacted-ref"
+                }
+            },
+            "loss_type": {
+                "type": "string",
+                "ref": "incident-confidentiality-loss-enum"
+            },
+            "record_count": {
+                "type": "integer"
+            },
+            "record_size": {
+                "type": "integer"
+            }
+        }
+    },
+    "defender-activity": {
+        "type": "object",
+        "required": [
+            "activity_type",
+            "outcome"
+        ],
+        "properties": {
+            "activity_type": {
+                "type": "string",
+                "ref": "defender-activity-ov"
+            },
+            "outcome": {
+                "type": "string",
+                "ref": "activity-outcome-enum"
+            },
+            "description": {
+                "type": "string",
+                "semantics": "sentence"
+            },
+            "identity_refs": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "semantics": "stix-id",
+                    "stix-type": "identity"
+                }
+            },
+            "impacted_refs": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "ref": "impacted-ref"
+                }
+            },
+            "object_ref": {
+                "type": "string",
+                "ref": "sdo-identifier"
+            },
+            "start_time": {
+                "type": "string",
+                "semantics": "stix-timestamp"
+            },
+            "start_time_fidelity": {
+                "type": "string",
+                "ref": "timestamp-fidelity-enum"
+            },
+            "end_time": {
+                "type": "string",
+                "semantics": "stix-timestamp"
+            },
+            "end_time_fidelity": {
+                "type": "string",
+                "ref": "timestamp-fidelity-enum"
+            },
+            "sequence_start": {
+                "type": "integer"
+            },
+            "sequence_end": {
+                "type": "integer"
+            }
+        }
+    },
+    "entity-count": {
+        "type": "object",
+        "properties": {
+            "individual": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 999999999
+            },
+            "group": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 999999999
+            },
+            "system": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 999999999
+            },
+            "organization": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 999999999
+            },
+            "class": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 999999999
+            },
+            "unknown": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 999999999
+            }
+        }
+    },
+    "external-impact": {
+        "type": "object",
+        "required": [
+            "impact_type"
+        ],
+        "properties": {
+            "impact_type": {
+                "type": "string",
+                "ref": "external-impact-ov"
+            },
+            "criticality": {
+                "type": "integer"
+            },
+            "description": {
+                "type": "string",
+                "semantics": "sentence"
+            },
+            "impacted_refs": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "ref": "impacted-ref"
+                }
+            }
+        }
+    },
+    "incident-score": {
+        "type": "object",
+        "required": [
+            "name",
+            "value"
+        ],
+        "properties": {
+            "name": {
+                "type": "string",
+                "semantics": "catch_phrase"
+            },
+            "value": {
+                "type": "integer"
+            },
+            "description": {
+                "type": "string",
+                "semantics": "sentence"
+            }
+        }
+    },
+    "integrity-impact": {
+        "type": "object",
+        "required": [
+            "alteration"
+        ],
+        "properties": {
+            "alteration": {
+                "type": "string",
+                "ref": "integrity-alteration-enum"
+            },
+            "description": {
+                "type": "string",
+                "semantics": "sentence"
+            },
+            "impacted_refs": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "ref": "impacted-ref"
+                }
+            },
+            "information_type": {
+                "type": "string",
+                "ref": "information-type-ov"
+            },
+            "record_count": {
+                "type": "integer"
+            },
+            "record_size": {
+                "type": "integer"
+            },
+            "recoverability": {
+                "type": "string",
+                "ref": "recoverability-enum"
+            }
+        }
+    },
+    "monetary-impact": {
+        "type": "object",
+        "required": [
+            "variety"
+        ],
+        "properties": {
+            "variety": {
+                "type": "string",
+                "ref": "monetary-impact-type-ov"
+            },
+            "criticality": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+            },
+            "currency": "USD",
+            "description": {
+                "type": "string",
+                "semantics": "sentence"
+            },
+            "max_amount": {
+                "type": "integer"
+            },
+            "min_amount": {
+                "type": "integer"
+            }
+        }
+    },
+    "physical-impact": {
+        "type": "object",
+        "required": [
+            "impact_type"
+        ],
+        "properties": {
+            "impact_type": {
+                "type": "string",
+                "ref": "physical-impact-enum"
+            },
+            "description": {
+                "type": "string",
+                "semantics": "sentence"
+            },
+            "asset_type": {
+                "type": "string",
+                "ref": "asset-type-ov"
+            },
+            "impacted_refs": {
+                "type": "array",
+                "ref": "array-of-sdo-identifiers"
+            },
+            "recoverability": {
+                "type": "string",
+                "ref": "recoverability-enum"
+            }
+        }
+    },
+
+    "impacted-ref": {
+        "type": "string",
+        "oneOf": [
+            {
+                "type": "string",
+                "semantics": "stix-id",
+                "stix-type": "infrastructure"
+            },
+            {
+                "type": "string",
+                "ref": "sco-identifier"
+            },
+            {
+                "type": "string",
+                "ref": "sdo-identifier"
+            }
+        ]
+    },
+
+    "asset-type-ov": {
+        "type": "string",
+        "oneOf": [
+            "building-doors",
+            "building-windows",
+            "buildings",
+            "computers-mobile",
+            "computers-personal",
+            "computers-server",
+            "environment",
+            "ics-actuator",
+            "ics-engineering-workstation",
+            "ics-historian",
+            "ics-hmi",
+            "ics-other",
+            "ics-plc",
+            "ics-safety-system",
+            "ics-sensor",
+            "inventory",
+            "network-device",
+            "private-infrastructure",
+            "public-infrastructure",
+            "security-containers",
+            "vehicles"
+        ]
+    },
+    "defender-activity-ov": {
+        "type": "string",
+        "oneOf": [
+            "administrative",
+            "containment",
+            "declared",
+            "detected",
+            "eradication",
+            "escalated",
+            "exercised-control",
+            "external-outreach",
+            "external-support",
+            "implemented-control",
+            "recovery",
+            "reported"
+        ]
+    },
+    "detection-methods-ov": {
+        "type": "string",
+        "oneOf": [
+            "automated-tool",
+            "human-review",
+            "message-from-attacker",
+            "system-outage",
+            "user-reporting"
+        ]
+    },
+    "external-impact-ov": {
+        "type": "string",
+        "oneOf": [
+            "civil-liberties",
+            "economic",
+            "foreign-relations",
+            "national-security",
+            "public-confidence",
+            "public-health",
+            "public-safety"
+        ]
+    },
+    "incident-investigation-ov": {
+        "type": "string",
+        "oneOf": [
+            "closed",
+            "new",
+            "open"
+        ]
+    },
+    "incident-type-ov": {
+        "type": "string",
+        "oneOf": [
+            "compromised-system",
+            "denial-of-service",
+            "destruction",
+            "equipment-loss",
+            "equipment-theft",
+            "major",
+            "supply-chain-customer",
+            "supply-chain-vendor",
+            "unauthorized-access",
+            "unauthorized-equipment",
+            "unauthorized-release",
+            "unauthorized-use"
+        ]
+    },
+    "information-type-ov": {
+        "type": "string",
+        "oneOf": [
+            "classified-material",
+            "communication",
+            "credentials-admin",
+            "credentials-user",
+            "financial",
+            "legal",
+            "payment",
+            "phi",
+            "pii",
+            "proprietary"
+        ]
+    },
+    "monetary-impact-type-ov": {
+        "type": "string",
+        "oneOf": [
+            "asset-and-fraud",
+            "brand-damage",
+            "business-disruption",
+            "competitive-advantage",
+            "legal-and-regulatory",
+            "operating-costs",
+            "response-and-recovery",
+            "uncategorized"
+        ]
+    },
+
+    "activity-outcome-enum": {
+        "type": "string",
+        "oneOf": [
+            "blocked",
+            "ongoing",
+            "failed",
+            "occurred",
+            "pending",
+            "successful",
+            "unknown"
+        ]
+    },
+    "incident-confidentiality-loss-enum": {
+        "type": "string",
+        "oneOf": [
+            "confirmed-loss",
+            "contained",
+            "exploited-loss",
+            "none",
+            "suspected-loss"
+        ]
+    },
+    "incident-determination-enum": {
+        "type": "string",
+        "oneOf": [
+            "blocked",
+            "successful-attempt",
+            "failed-attempt",
+            "false-positive",
+            "low-value",
+            "suspected"
+        ]
+    },
+    "integrity-alteration-enum": {
+        "type": "string",
+        "oneOf": [
+            "potential-destruction",
+            "potential-modification",
+            "partial-destruction",
+            "partial-modification",
+            "full-destruction",
+            "full-modification",
+            "none"
+        ]
+    },
+    "physical-impact-enum": {
+        "type": "string",
+        "oneOf": [
+            "damaged-functional",
+            "damaged-nonfunctional",
+            "destruction",
+            "none",
+            "unknown"
+        ]
+    },
+    "recoverability-enum": {
+        "type": "string",
+        "oneOf": [
+            "extended",
+            "not-applicable",
+            "not-recoverable",
+            "regular",
+            "supplemented"
+        ]
+    },
+    "timestamp-fidelity-enum": {
+        "type": "string",
+        "oneOf": [
+            "day",
+            "hour",
+            "minute",
+            "month",
+            "second",
+            "year"
+        ]
+    },
+    "traceability-enum": {
+        "type": "string",
+        "oneOf": [
+            "accountability-lost",
+            "partial-accountability",
+            "provable-accountability"
+        ]
+    },
+
+
+
+
+
+
+    "identity": {
+        "type": "object",
+        "import": "common-properties",
+        "required": [
+            "type",
+            "name",
+            "id",
+            "extensions"
+        ],
+        "properties": {
+            "type": "identity",
+            "id": {
+                "type": "string",
+                "semantics": "stix-id",
+                "stix-type": "identity"
+            },
+            "name": {
+                "type": "string",
+                "semantics": "company"
+            },
+            "description": {
+                "type": "string",
+                "semantics": "catch_phrase"
+            },
+            "roles": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "semantics": "word"
+                }
+            },
+            "identity_class": {
+                "type": "string",
+                "ref": "identity-class-ov"
+            },
+            "sectors": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "ref": "industry-sector-ov"
+                }
+            },
+            "contact_information": {
+                "type": "string",
+                "semantics": "address"
+            },
+            "extensions": {
+                "type": "object",
+                "required": [
+                    "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498"
+                ],
+                "properties": {
+                    "extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498": {
+                        "type": "object",
+                        "ref": "identity-contact-ext"
+                    }
+                }
+            }
+        }
+    },
+    "identity-contact-ext": {
+        "type": "object",
+        "required": [
+            "extension_type"
+        ],
+        "properties": {
+            "extension_type": "property-extension",
+            "contact_numbers": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "ref": "contact-number"
+                }
+            },
+            "email_addresses": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "ref": "email-contact"
+                }
+            },
+            "first_name": {
+                "type": "string",
+                "semantics": "first_name"
+            },
+            "last_name": {
+                "type": "string",
+                "semantics": "last_name"
+            },
+            "middle_name": {
+                "type": "string",
+                "semantics": "first_name"
+            },
+            "prefix": {
+                "type": "string",
+                "semantics": "prefix"
+            },
+            "social_media_accounts": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "ref": "social-media-contact"
+                }
+            },
+            "suffix": {
+                "type": "string",
+                "semantics": "suffix"
+            }
+        }
+    },
+
+
+
+
+
+
+    "contact-number": {
+        "type": "object",
+        "required": [
+            "contact_number_type",
+            "contact_number"
+        ],
+        "properties": {
+            "description": {
+                "type": "string",
+                "semantics": "catch_phrase"
+            },
+            "contact_number_type": {
+                "type": "string",
+                "ref": "contact-number-ov"
+            },
+            "contact_number": {
+                "type": "string",
+                "semantics": "phone_number"
+            }
+        }
+    },
+    "email-contact": {
+        "type": "object",
+        "required": [
+            "digital_contact_type",
+            "email_address_ref"
+        ],
+        "properties": {
+            "description": {
+                "type": "string",
+                "semantics": "catch_phrase"
+            },
+            "digital_contact_type": {
+                "type": "string",
+                "ref": "digital-contact-ov"
+            },
+            "email_address_ref": {
+                "type": "string",
+                "semantics": "stix-id",
+                "stix-type": "email-addr"
+            }
+        }
+    },
+    "social-media-contact": {
+        "type": "object",
+        "required": [
+            "digital_contact_type",
+            "user_account_ref"
+        ],
+        "properties": {
+            "description": {
+                "type": "string",
+                "semantics": "catch_phrase"
+            },
+            "digital_contact_type": {
+                "type": "string",
+                "ref": "digital-contact-ov"
+            },
+            "user_account_ref": {
+                "type": "string",
+                "semantics": "stix-id",
+                "stix-type": "user-account"
+            }
+        }
+    },
+    "contact-number-ov": {
+        "type": "string",
+        "oneOf": [
+            "classified-phone",
+            "personal-fax",
+            "personal-phone",
+            "unclassified-phone",
+            "work-phone",
+            "work-fax"
+        ]
+    },
+    "digital-contact-ov": {
+        "type": "string",
+        "oneOf": [
+            "classified",
+            "organizational",
+            "personal",
+            "unclassified",
+            "work"
+        ]
+    }
+}
