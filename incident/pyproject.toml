@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stix2-incident"
+version = "0.1"
+description = "Implementation of extensions to the STIX 2.1 incident stub"
+dependencies = [
+    "stix2"
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "tox"]
+
+[tool.pytest.ini_options]
+addopts = "--import-mode=importlib"
