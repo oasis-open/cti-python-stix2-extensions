@@ -9,12 +9,16 @@ To contribute an extension implementation:
 
 - Fork this repository
 
-- Create a subdirectory named after your extension.  The naming convention is: <STIX object type name>-<extension definition id first grouping>.  
-  - For multiple extensions which are related, use the "root" STIX object type name.
-    For example:  incident-extension-definition--ef765651
+- Create a subdirectory named after your extension.  
+
+  - The naming convention is: ``<STIX object type name>-extension-<extension definition id's UUID first grouping>``.  For multiple extension definitions which are related, use the "root" STIX object type name.
+
+    For example:  incident-extension-ef765651
 - Create a buildable Python project in your subdirectory:
-  - The project name should also reflect your extension
-    For example:   "python-stix2-<directory name from previous step>"
+
+  - The project name should also reflect your extension ``python-stix2-<directory name from previous step>``
+    
+    For example:  python-stix2-incident-extension-ef765651
   - Recommended style is `pyproject.toml <https://packaging.python.org/en/latest/guides/writing-pyproject-toml>`_,
     e.g. using setuptools build backend with a `src-layout <https://setuptools.pypa.io/en/latest/userguide/package_discovery.html#src-layout>`_.
 - Unit tests should be included
