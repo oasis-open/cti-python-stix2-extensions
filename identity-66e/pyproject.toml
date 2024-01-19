@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "python-stix2-identity-66e"
+version = "0.1"
+description = "Implementation of python API for Identity Contact Information extensions for STIX 2.1"
+dependencies = [
+    "stix2"
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "tox"]
+
+[tool.pytest.ini_options]
+addopts = "--import-mode=importlib"
