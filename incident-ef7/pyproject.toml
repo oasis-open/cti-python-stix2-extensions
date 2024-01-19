@@ -3,7 +3,7 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "python-stix2-incident-extension"
+name = "incident-ef7"
 version = "0.1"
 description = "Implementation of python API for the extensions to the STIX 2.1 incident stub"
 dependencies = [
