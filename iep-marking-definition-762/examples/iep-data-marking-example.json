@@ -31,7 +31,6 @@
                     "unmodified_resale": "must-not",
                     "iep_id": "0224bfdf-ea3a-49c3-96f6-66d908bb1845",
                     "iep_version": 2.0,
-                    "policy_name": "IEP TLP-AMBER",
                     "description": "This is a TLP-AMBER Information Exchange Policy",
                     "start_date": "2022-10-01T00:00:00.000Z"
                 }

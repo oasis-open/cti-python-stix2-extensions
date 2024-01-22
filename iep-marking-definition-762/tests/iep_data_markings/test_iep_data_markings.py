@@ -13,16 +13,13 @@ EXPECTED_IEP_DATA_MARKING = """{
         "extension-definition--762e2e97-ee51-43e5-a9ea-165fbb862c4a": {
             "extension_type": "property-extension",
             "encrypt_in_transit": "may",
-            "permitted_actions": [
-                "externally-visible-direct-actions"
-            ],
+            "permitted_actions": "externally-visible-direct-actions",
             "affected_party_notifications": "may",
             "tlp": "amber",
             "provider_attribution": "must-not",
             "unmodified_resale": "must-not",
             "iep_id": "0224bfdf-ea3a-49c3-96f6-66d908bb1845",
             "iep_version": 2.0,
-            "policy_name": "IEP TLP-AMBER",
             "description": "This is a TLP-AMBER Information Exchange Policy",
             "start_date": "2022-10-01T00:00:00Z"
         }
@@ -46,7 +43,6 @@ INDICATOR_WITH_DATA_MARKING = """{
 
 
 def test_is_iep_data_marking():
-
     iep_data_marking = MarkingDefinition(
         id='marking-definition--da05d443-ad8d-46fc-abf5-31d3d00290f1',
         name='IEP data marking',
@@ -62,7 +58,6 @@ def test_is_iep_data_marking():
                 unmodified_resale='must-not',
                 iep_id='0224bfdf-ea3a-49c3-96f6-66d908bb1845',
                 iep_version='2.0',
-                policy_name='IEP TLP-AMBER',
                 description='This is a TLP-AMBER Information Exchange Policy',
                 start_date='2022-10-01T00:00:00.000Z'
             )
@@ -94,7 +89,6 @@ def test_invalid_values():
                     unmodified_resale='must-not',
                     iep_id='0224bfdf-ea3a-49c3-96f6-66d908bb1845',
                     iep_version='2.0',
-                    policy_name='IEP TLP-AMBER',
                     description='This is a TLP-AMBER Information Exchange Policy',
                     start_date='2022-10-01T00:00:00.000Z'
                 )
@@ -115,7 +109,7 @@ def test_missing_required_fields():
             }
         )
 
-    assert str(excinfo.value) == "No values for required properties for IEPDataMarking: (affected_party_notifications, description, encrypt_in_transit, iep_id, iep_version, permitted_actions, policy_name, provider_attribution, start_date, tlp, unmodified_resale)."
+    assert str(excinfo.value) == "No values for required properties for IEPDataMarking: (affected_party_notifications, description, encrypt_in_transit, iep_id, iep_version, permitted_actions, provider_attribution, start_date, tlp, unmodified_resale)."
 
 
 def test_wrong_type_raises_exception():
@@ -133,7 +127,6 @@ def test_wrong_type_raises_exception():
                     unmodified_resale='must-not',
                     iep_id='0224bfdf-ea3a-49c3-96f6-66d908bb1845',
                     iep_version='2.0.a',
-                    policy_name='IEP TLP-AMBER',
                     description='This is a TLP-AMBER Information Exchange Policy',
                     start_date='2022-10-01T00:00:00.000Z'
                 )
@@ -159,7 +152,6 @@ def test_apply_iep_data_marking():
                 unmodified_resale='must-not',
                 iep_id='0224bfdf-ea3a-49c3-96f6-66d908bb1845',
                 iep_version='2.0',
-                policy_name='IEP TLP-AMBER',
                 description='This is a TLP-AMBER Information Exchange Policy',
                 start_date='2022-10-01T00:00:00.000Z'
             )
