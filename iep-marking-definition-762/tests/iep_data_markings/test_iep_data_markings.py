@@ -43,7 +43,6 @@ INDICATOR_WITH_DATA_MARKING = """{
 
 
 def test_is_iep_data_marking():
-
     iep_data_marking = MarkingDefinition(
         id='marking-definition--da05d443-ad8d-46fc-abf5-31d3d00290f1',
         name='IEP data marking',
