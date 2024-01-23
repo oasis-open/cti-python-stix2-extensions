@@ -2,7 +2,7 @@ import stix2
 import pytest
 import stix2.exceptions
 from stix2 import Identity
-from identity_contact_information.identity_contact_information import (IDENTIY_CONTACT_INFORMATION_EXTENSION_DEFINITION_ID, 
+from identity_contact_information.identity_contact_information import (IDENTITY_CONTACT_INFORMATION_EXTENSION_DEFINITION_ID, 
                                                                 IdentityContactInformation, ContactNumber, EmailContact,
                                                                 SocialMediaContact)
 
@@ -89,3 +89,6 @@ def wrong_field_type():
                 )
             }
         )
+
+if __name__ == '__main__':
+    test_invalid_value()
