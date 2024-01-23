@@ -74,7 +74,7 @@ def test_invalid_value():
             }
         )
 
-def wrong_field_type():
+def test_wrong_field_type():
     with pytest.raises(stix2.exceptions.InvalidValueError):
         Identity(
             type="identity",
@@ -89,6 +89,3 @@ def wrong_field_type():
                 )
             }
         )
-
-if __name__ == '__main__':
-    test_invalid_value()
