@@ -24,12 +24,12 @@ def test_parse_all():
                 middle_name="Middlename",
                 prefix="Ms",
                 suffix="Dr",
-                contact_number=ContactNumber(
+                contact_numbers=ContactNumber(
                     description="a contact number",
                     contact_number_type="personal-mobile-phone",
                     contact_number="123-456-7890"
                 ),
-                email_contact=EmailContact(
+                email_addresses=EmailContact(
                     description="an email address",
                     digital_contact_type="personal",
                     email_address_ref="email-addr--d80eb6d5-7d01-4cd2-b710-20ac765dc9c5"
@@ -66,7 +66,7 @@ def test_invalid_value():
             extensions={
                 IDENTITY_CONTACT_INFORMATION_EXTENSION_DEFINITION_ID: IdentityContactInformation(
                     extension_type="property-extension",
-                    contact_number=ContactNumber(
+                    contact_numbers=ContactNumber(
                         contact_number_type="invalid contact number type",
                         contact_number="123-456-7890"
                     )
@@ -82,7 +82,7 @@ def test_wrong_field_type():
             extensions={
                 IDENTITY_CONTACT_INFORMATION_EXTENSION_DEFINITION_ID: IdentityContactInformation(
                     extension_type="property-extension",
-                    contact_number=ContactNumber(
+                    contact_numbers=ContactNumber(
                         contact_number_type="personal-mobile-phone",
                         contact_number=123
                     )
