@@ -32,8 +32,15 @@ jobs:
         filters: |
           incident-ef7:
             - 'incident-ef7/**'
+          observed-string-8b1:
+            - 'observed-string-8b1/**'
 
     - name: Test incident-ef7 with Tox
       if: ${{ steps.filter.outputs.incident-ef7 == 'true' }}
       run: |
         tox -c incident-ef7/tox.ini
+
+    - name: Test observed-string-8b1 with Tox
+      if: ${{ steps.filter.outputs.observed-string-8b1 == 'true' }}
+      run: |
+        tox -c observed-string-8b1/tox.ini

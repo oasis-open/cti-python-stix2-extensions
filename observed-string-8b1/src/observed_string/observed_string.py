@@ -8,7 +8,7 @@ OBSERVED_STRING_EXTENSION_ID = "extension-definition--8b1aa84c-5532-4c69-a8e7-b6
 
 
 @stix2.v21.CustomObservable(
-    'observed-string-sco', [
+    'observed-string', [
         # required fields
         ('purpose', OpenVocabProperty(STRING_PURPOSE, required=True)),
         ('value', StringProperty(required=True)),
