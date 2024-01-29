@@ -12,7 +12,7 @@ def test_all_props():
         extensions={
             CUI_MARKING_EXTENSION_ID: CUIExtension(
                 control='CUI',
-                categories=["SP-SPECIFED-A", "SP-SPECIFIED-B", "ABCD", "EFGH"],
+                categories=["SP-SPECIFIED-A", "SP-SPECIFIED-B", "ABCD", "EFGH"],
                 disseminations=["NOFORN", "NOCON"],
                 designator_ref=designator.id,
                 required_statements=["MARKING REQUIRED BY AUTHORITY"],
