@@ -7,7 +7,7 @@
         "extension-definition--dff17fb3-edcb-4f99-ad1b-4b751c95738a": {
             "extension_type": "property-extension",
             "control": "CUI",
-            "categories": ["SP-SPECIFIED-A", "SP-SPECIFIED-B", "ABCD", "EFGH"],
+            "categories": ["SP-SSEL", "SBIZ"],
             "designator_ref": "identity--c069bb9f-158a-405d-92b4-858a2536df9a",
             "required_statements": ["MARKING REQUIRED BY AUTHORITY"],
             "supplemental_administrative": ["Draft"]
