@@ -1,7 +1,7 @@
 # Controlled Unclassified Information (CUI) Data Markings
 
 This is an implementation of the
-[CUI data marking extension](https://github.com/oasis-open/cti-stix-common-objects/blob/main/extension-definition-specifications/cui-dff/STIX-2.1-CUI-marking.adoc) for STIX 2.1.
+[CUI data marking extension](https://github.com/oasis-open/cti-stix-common-objects/blob/main/extension-definition-specifications/cui-marking-definition-dff/STIX-2.1-CUI-marking.adoc) for STIX 2.1.
 
 See example marking definitions (JSON) using this extension in the `/examples` subdirectory.
 
