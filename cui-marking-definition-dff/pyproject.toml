@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stix2-cui-dff"
+version = "0.1"
+description = "Implementation of a Python API for the Controlled Unclassified Information extension for STIX 2.1 data markings."
+dependencies = [
+    "stix2"
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "tox"]
+
+[tool.pytest.ini_options]
+addopts = "--import-mode=importlib"
