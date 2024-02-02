@@ -12,7 +12,7 @@ def test_all_props():
         extensions={
             CUI_MARKING_EXTENSION_ID: CUIExtension(
                 control='CUI',
-                categories=["SP-SPECIFIED-A", "SP-SPECIFIED-B", "ABCD", "EFGH"],
+                categories=["SP-SSEL", "SBIZ"],
                 disseminations=["NOFORN", "NOCON"],
                 designator_ref=designator.id,
                 required_statements=["MARKING REQUIRED BY AUTHORITY"],
@@ -48,7 +48,7 @@ def test_missing_props():
         stix2.MarkingDefinition(
             extensions={
                 CUI_MARKING_EXTENSION_ID: CUIExtension(
-                    categories=["ABCD"],
+                    categories=["SBIZ"],
                 )
             }
         )
