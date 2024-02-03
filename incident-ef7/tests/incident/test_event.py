@@ -164,3 +164,20 @@ def test_subevents_undefined_next_event():
                 )
             ]
         )
+
+
+def test_event_time_order():
+    with pytest.raises(stix2.exceptions.ObjectConfigurationError):
+        Event(
+            status=vocab.EVENT_STATUS_ONGOING,
+            start_time="1991-04-02T03:26:36.2678Z",
+            end_time="1990-08-31T08:14:47.289721Z"
+        )
+
+    # Try with exactly equal times as well; spec implies this should error
+    with pytest.raises(stix2.exceptions.ObjectConfigurationError):
+        Event(
+            status=vocab.EVENT_STATUS_ONGOING,
+            start_time="1991-04-02T03:26:36.2678Z",
+            end_time="1991-04-02T03:26:36.2678Z"
+        )

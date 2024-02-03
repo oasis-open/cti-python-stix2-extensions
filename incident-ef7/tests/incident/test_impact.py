@@ -123,6 +123,33 @@ def test_superseded_by_ref_dependency():
         )
 
 
+def test_impact_time_order():
+    with pytest.raises(ObjectConfigurationError):
+        Impact(
+            impact_category="availability-ext",
+            start_time="1994-08-18T03:22:22.2371Z",
+            end_time="1980-02-14T01:44:38.7912Z",
+            extensions={
+                "availability-ext": AvailabilityImpactExt(
+                    availability_impact=25
+                )
+            }
+        )
+
+    # Try with exactly equal times as well; spec implies this should error
+    with pytest.raises(ObjectConfigurationError):
+        Impact(
+            impact_category="availability-ext",
+            start_time="1994-08-18T03:22:22.2371Z",
+            end_time="1994-08-18T03:22:22.2371Z",
+            extensions={
+                "availability-ext": AvailabilityImpactExt(
+                    availability_impact=25
+                )
+            }
+        )
+
+
 def test_confidentiality_impact_information_type_dependency():
     with pytest.raises(ObjectConfigurationError):
         ConfidentialityImpactExt(
@@ -220,8 +247,8 @@ def test_monetary_impact_maximal():
         conversion_time="2001-03-04T23:12:02.34562Z",
         currency="ABC",
         currency_actual="DEF",
-        max_amount=1.2,
-        min_amount=3.4
+        max_amount=3.4,
+        min_amount=1.2
     )
 
 
@@ -278,6 +305,30 @@ def test_monetary_impact_dependency_currency_actual():
             max_amount=10000,
             currency_actual="XYZ"
         )
+
+
+def test_monetary_impact_min_max_amount_order():
+    with pytest.raises(ObjectConfigurationError):
+        MonetaryImpactExt(
+            variety=vocab.MONETARY_IMPACT_RANSOM_DEMAND,
+            conversion_rate=1.4,
+            conversion_time="2001-03-04T23:12:02.34562Z",
+            currency="ABC",
+            currency_actual="DEF",
+            max_amount=1.2,
+            min_amount=3.4
+        )
+
+    # equal min/max_amount should be okay
+    MonetaryImpactExt(
+        variety=vocab.MONETARY_IMPACT_RANSOM_DEMAND,
+        conversion_rate=1.4,
+        conversion_time="2001-03-04T23:12:02.34562Z",
+        currency="ABC",
+        currency_actual="DEF",
+        max_amount=1.2,
+        min_amount=1.2
+    )
 
 
 def test_physical_impact_dependency_asset_type():

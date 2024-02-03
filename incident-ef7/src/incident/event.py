@@ -1,7 +1,7 @@
-import logging
 from collections import OrderedDict
 
 import stix2
+from stix2.exceptions import ObjectConfigurationError
 from stix2.properties import (BooleanProperty, EnumProperty, ListProperty,
                               OpenVocabProperty, ReferenceProperty,
                               StringProperty, TimestampProperty)
@@ -57,7 +57,6 @@ class EventEntry(_STIXBase21):
 class Event:
     def _check_object_constraints(self):
         super()._check_object_constraints()
-        log = logging.getLogger(__name__)
 
         validate_event_sequence(self.get("subevents"))
 
@@ -65,8 +64,8 @@ class Event:
         end_time = self.get('end_time')
 
         if start_time is not None and end_time is not None:
-            if start_time > end_time:
-                log.warning(
-                    'event start time is later than end time: %s > %s',
-                    start_time, end_time
+            if start_time >= end_time:
+                raise ObjectConfigurationError(
+                    'event start time is equal to or later than end time:'
+                    ' {} >= {}'.format(start_time, end_time)
                 )
