@@ -1,7 +1,7 @@
-import logging
 from collections import OrderedDict
 
 import stix2
+from stix2.exceptions import ObjectConfigurationError
 from stix2.properties import (BooleanProperty, EnumProperty, IntegerProperty,
                               ListProperty, OpenVocabProperty,
                               ReferenceProperty, StringProperty,
@@ -59,7 +59,6 @@ class TaskEntry(_STIXBase21):
 class Task:
     def _check_object_constraints(self):
         super()._check_object_constraints()
-        log = logging.getLogger(__name__)
 
         util.validate_task_sequence(self.get("subtasks"))
 
@@ -67,8 +66,8 @@ class Task:
         end_time = self.get('end_time')
 
         if start_time is not None and end_time is not None:
-            if start_time > end_time:
-                log.warning(
-                    'task start time is later than end time: %s > %s',
-                    start_time, end_time
+            if start_time >= end_time:
+                raise ObjectConfigurationError(
+                    'task start time is equal to or later than end time:'
+                    ' {} >= {}'.format(start_time, end_time),
                 )

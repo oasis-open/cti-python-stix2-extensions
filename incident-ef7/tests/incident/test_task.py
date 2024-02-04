@@ -170,3 +170,20 @@ def test_subtasks_undefined_next_step():
                 )
             ]
         )
+
+
+def test_task_time_order():
+    with pytest.raises(ObjectConfigurationError):
+        Task(
+            outcome=vocab.TASK_OUTCOME_SUCCESSFUL,
+            start_time="1997-04-13T20:09:19.1697Z",
+            end_time="1991-04-28T18:31:00.5648Z"
+        )
+
+    # Try with exactly equal times as well; spec implies this should error
+    with pytest.raises(ObjectConfigurationError):
+        Task(
+            outcome=vocab.TASK_OUTCOME_SUCCESSFUL,
+            start_time="1997-04-13T20:09:19.1697Z",
+            end_time="1997-04-13T20:09:19.1697Z"
+        )
