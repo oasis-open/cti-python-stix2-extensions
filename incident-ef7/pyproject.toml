@@ -16,5 +16,8 @@ dev = ["pytest", "tox"]
 [tool.pytest.ini_options]
 addopts = "--import-mode=importlib"
 
+[tool.ruff.lint]
+extend-select = ["E501"]
+
 [tool.ruff.lint.pycodestyle]
 max-line-length = 160
