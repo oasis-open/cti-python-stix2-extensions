@@ -12,9 +12,9 @@ CONTROL_ENUM = [
 @stix2.v21.CustomExtension(
     CUI_MARKING_EXTENSION_ID, [
         ('control', EnumProperty(CONTROL_ENUM, required=True)),
+        ('designator_ref', ReferenceProperty(valid_types='identity', spec_version='2.1', required=True)),
         ('categories', ListProperty(StringProperty())),
         ('disseminations', ListProperty(StringProperty())),
-        ('designator_ref', ReferenceProperty(valid_types='identity', spec_version='2.1')),
         ('required_statements', ListProperty(StringProperty())),
         ('supplemental_administrative', ListProperty(StringProperty())),
     ],
