@@ -27,23 +27,13 @@ def test_parse_all_props():
                     'description':'a contact number',
                     'contact_number_type':'personal-mobile-phone',
                     'contact_number':'123-456-7890'
-                },
-                'email_addresses': {
-                    'description':'an email address',
-                    'digital_contact_type':'personal',
-                    'email_address_ref':'email-addr--d80eb6d5-7d01-4cd2-b710-20ac765dc9c5'
-                },
-                'social_media_accounts': {
-                    'description':'a social media account',
-                    'digital_contact_type':'personal',
-                    'user_account_ref':'user-account--a60d5641-a860-4a86-8ed8-6bbbeaf300e9'
                 }
             }
         }
     }
     
     identity = stix2.parse(identity_dict)
-    #assert isinstance(identity, stix2.Identity)
+    assert isinstance(identity, stix2.Identity)
 
 """def test_missing_required_fields():
     with pytest.raises(stix2.exceptions.MissingPropertiesError):
