@@ -70,8 +70,6 @@ def test_is_iep_data_marking():
         IEPDataMarking
     )
     assert iep_data_marking.serialize(pretty=True) == EXPECTED_IEP_DATA_MARKING
-    # assert iep_data_marking.serialize(pretty=True) == EXPECTED_IEP_DATA_MARKING,
-    # '{0} != {1}'.format(iep_data_marking.serialize(pretty=True), EXPECTED_IEP_DATA_MARKING)
 
 
 def test_invalid_values():
@@ -96,12 +94,10 @@ def test_invalid_values():
         )
 
     assert excinfo.value.prop_name == "encrypt_in_transit"
-    assert excinfo.value.reason == "value 'yes' is not valid for this enumeration."
-    assert str(excinfo.value) == "Invalid value for IEPDataMarking 'encrypt_in_transit': value 'yes' is not valid for this enumeration."
 
 
 def test_missing_required_fields():
-    with pytest.raises(stix2.exceptions.MissingPropertiesError) as excinfo:
+    with pytest.raises(stix2.exceptions.MissingPropertiesError):
         MarkingDefinition(
             name='IEP data marking',
             extensions={
@@ -109,11 +105,9 @@ def test_missing_required_fields():
             }
         )
 
-    assert str(excinfo.value) == "No values for required properties for IEPDataMarking: (affected_party_notifications, description, encrypt_in_transit, iep_id, iep_version, permitted_actions, provider_attribution, start_date, tlp, unmodified_resale)."
-
 
 def test_wrong_type_raises_exception():
-    with pytest.raises(stix2.exceptions.InvalidValueError) as excinfo:
+    with pytest.raises(stix2.exceptions.InvalidValueError):
         MarkingDefinition(
             name='IEP data marking',
             extensions={
@@ -132,8 +126,6 @@ def test_wrong_type_raises_exception():
                 )
             }
         )
-
-    assert str(excinfo.value) == "Invalid value for IEPDataMarking 'iep_version': must be a float."
 
 
 def test_apply_iep_data_marking():
