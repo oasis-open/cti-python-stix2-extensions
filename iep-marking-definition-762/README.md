@@ -1,7 +1,7 @@
 # IEP Marking Definition Version 2.0
 
 This is an implementation of the
-[IEP Marking Definition Version 2.0](https://github.com/robthew/cti-stix-common-objects/blob/main/extension-definition-specifications/iep-marking-definition-762/STIX-2.1-IEP2.0-marking-definition.adoc).
+[IEP Marking Definition Version 2.0](https://github.com/oasis-open/cti-stix-common-objects/blob/main/extension-definition-specifications/iep-marking-definition-762/STIX-2.1-IEP2.0-marking-definition.adoc).
 It includes the data marking extension itself, and a set of tests.
 
 ## Example usage
@@ -48,7 +48,7 @@ The PYTHONPATH needs to be set in env. This enables the tests to find the data m
 On a Mac:
 `export PYTHONPATH=$(pwd)/src`
 or on Windows:
-`export PYTHONPATH=$(cd)/src`
+`set PYTHONPATH=$(cd)/src`
 
 Run the tests:
 `tox -c tox.ini`
