@@ -3,9 +3,9 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "python-stix2-incident-extension"
+name = "stix2-cui-dff"
 version = "0.1"
-description = "Implementation of python API for the extensions to the STIX 2.1 incident stub"
+description = "Implementation of a Python API for the Controlled Unclassified Information extension for STIX 2.1 data markings."
 dependencies = [
     "stix2"
 ]

@@ -1,0 +1,46 @@
+name: cti-python-stix2-extensions test harness
+on:
+  push:
+    paths:
+      - '**.py'
+  pull_request:
+    paths:
+      - '**.py'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, '3.10', '3.11', '3.12']
+
+    name: Python ${{ matrix.python-version }} Build
+    steps:
+    - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@0a5c61591373683505ea898e09a3ea4f39ef2b9c
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install and update essential dependencies
+      run: |
+        pip install -U pip setuptools
+        pip install tox-gh-actions
+    - uses: dorny/paths-filter@4512585405083f25c027a35db413c2b3b9006d50
+      id: filter
+      with:
+        filters: |
+          incident-ef7:
+            - 'incident-ef7/**'
+          observed-string-8b1:
+            - 'observed-string-8b1/**'
+
+    - name: Test incident-ef7 with Tox
+      if: ${{ steps.filter.outputs.incident-ef7 == 'true' }}
+      run: |
+        tox -c incident-ef7/tox.ini
+
+    - name: Test observed-string-8b1 with Tox
+      if: ${{ steps.filter.outputs.observed-string-8b1 == 'true' }}
+      run: |
+        tox -c observed-string-8b1/tox.ini

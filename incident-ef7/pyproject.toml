@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "incident-ef7"
+version = "0.1"
+description = "Implementation of python API for the extensions to the STIX 2.1 incident stub"
+dependencies = [
+    "stix2"
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "tox"]
+
+[tool.pytest.ini_options]
+addopts = "--import-mode=importlib"
+
+[tool.ruff.lint]
+extend-select = ["E501"]
+
+[tool.ruff.lint.pycodestyle]
+max-line-length = 160
