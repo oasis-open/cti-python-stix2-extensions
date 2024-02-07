@@ -44,3 +44,13 @@ jobs:
       if: ${{ steps.filter.outputs.observed-string-8b1 == 'true' }}
       run: |
         tox -c observed-string-8b1/tox.ini
+    
+    - name: Test identity-66e with Tox
+      if: ${{ steps.filter.outputs.identity-66e == 'true' }}
+      run: |
+        tox -c identity-66e/tox.ini
+
+    - name: Test pap-marking-definition-f8d with Tox
+      if: ${{ steps.filter.outputs.pap-marking-definition-f8d == 'true' }}
+      run: |
+        tox -c pap-marking-definition-f8d/tox.ini
