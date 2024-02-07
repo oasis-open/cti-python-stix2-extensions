@@ -1,4 +1,4 @@
-This is an implementation of the [Identity Contact Information Extension] https://github.com/oasis-open/cti-stix-common-objects/tree/main/extension-definition-specifications/identity-66e/Identity Contact Information.adoc for STIX 2.1. 
+This is an implementation of the [Identity Contact Information Extension](https://github.com/oasis-open/cti-stix-common-objects/tree/main/extension-definition-specifications/identity-66e/Identity) Contact Information.adoc for STIX 2.1. 
 
 See example Identity Contact definitions (JSON) using this extension in the `/examples` subdirectory.
 

@@ -1,4 +1,4 @@
-This is an implementation of the [PAP Data Marking Extension] (https://github.com/oasis-open/cti-stix-common-objects/tree/main/extension-definition-specifications/pap-f8d/STIX-2.1-PAP-marking-defintion.adoc) for STIX 2.1.
+This is an implementation of the [PAP Data Marking Extension](https://github.com/oasis-open/cti-stix-common-objects/tree/main/extension-definition-specifications/pap-f8d/STIX-2.1-PAP-marking-defintion.adoc) for STIX 2.1.
 
 See example PAP definitions (JSON) using this extension in the `/examples` subdirectory.
 
