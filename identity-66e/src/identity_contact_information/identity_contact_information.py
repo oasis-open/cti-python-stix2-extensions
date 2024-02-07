@@ -61,7 +61,7 @@ class SocialMediaContact(_STIXBase21):
         ('suffix', StringProperty()),
     ],
 )
-class IdentityContactInformation:
+class IdentityContactInformation():
     extension_type = 'property-extension'
 
     def _check_object_constraints(self):

@@ -1,6 +1,7 @@
 import stix2
 import pytest
 import stix2.exceptions
+from stix2 import Identity
 from identity_contact_information.identity_contact_information import (IDENTITY_CONTACT_INFORMATION_EXTENSION_DEFINITION_ID, 
                                                                 IdentityContactInformation)
 
@@ -23,11 +24,16 @@ def test_parse_all_props():
                 'middle_name':'Middlename',
                 'prefix':'Ms',
                 'suffix':'Dr',
-                'contact_numbers': {
+                'contact_numbers': [{
                     'description':'a contact number',
                     'contact_number_type':'personal-mobile-phone',
                     'contact_number':'123-456-7890'
-                }
+                }],
+                'email_addresses': [{
+                    "email_address_ref": "email-addr--d80eb6d5-7d01-4cd2-b710-20ac765dc9c5",
+                    "digital_contact_type": "personal",
+                    "classified": 'false'
+                }]
             }
         }
     }
@@ -35,12 +41,12 @@ def test_parse_all_props():
     identity = stix2.parse(identity_dict)
     assert isinstance(identity, stix2.Identity)
 
-"""def test_missing_required_fields():
+def test_missing_required_fields():
     with pytest.raises(stix2.exceptions.MissingPropertiesError):
         Identity(
             type="identity",
             name="MissingRequiredFieldsIdentity",
             extensions={
-                IDENTITY_CONTACT_INFORMATION_EXTENSION_DEFINITION_ID: IdentityContactInformation()
+              IDENTITY_CONTACT_INFORMATION_EXTENSION_DEFINITION_ID: IdentityContactInformation()  
             }
-        )"""
+        )
