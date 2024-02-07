@@ -1,7 +1,6 @@
 import stix2
 import pytest
 import stix2.exceptions
-from stix2 import Identity
 from identity_contact_information.identity_contact_information import (IDENTITY_CONTACT_INFORMATION_EXTENSION_DEFINITION_ID, 
                                                                 IdentityContactInformation)
 
@@ -41,11 +40,11 @@ def test_parse_all_props():
     identity = stix2.parse(identity_dict)
     assert isinstance(identity, stix2.Identity)
 
-def test_missing_required_fields():
-    with pytest.raises(stix2.exceptions.MissingPropertiesError):
-        Identity(
+def test_missing_required_property():
+    with pytest.raises(stix2.exceptions.AtLeastOnePropertyError):
+        stix2.Identity(
             type="identity",
-            name="MissingRequiredFieldsIdentity",
+            name="MissingRequiredPropertyIdentity",
             extensions={
               IDENTITY_CONTACT_INFORMATION_EXTENSION_DEFINITION_ID: IdentityContactInformation()  
             }

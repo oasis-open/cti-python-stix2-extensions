@@ -65,5 +65,5 @@ class IdentityContactInformation():
     extension_type = 'property-extension'
 
     def _check_object_constraints(self):
-        super(IdentityContactInformation, self)._check_object_constraints()
+        super()._check_object_constraints()
         self._check_at_least_one_property(["contact_numbers", "email_addresses", "social_media_accounts"])
