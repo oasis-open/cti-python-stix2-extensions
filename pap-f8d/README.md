@@ -4,7 +4,8 @@ See example PAP definitions (JSON) using this extension in the `/examples` subdi
 
 Example Python usage:
 
-`import stix2
+```
+import stix2
 from pap.pap import (PAPMarkingDefinition, PAPMarkingDefinitionError, 
                 PAP_MARKING_EXTENSION_ID, PAPExtension)
 
@@ -17,6 +18,7 @@ pap_marking = PAPMarkingDefinition(
             'pap':'amber'
         }
     }
-)`
+)
+```
 
 Tests can be run with Tox by executing the `tox` command.

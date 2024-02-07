@@ -4,7 +4,8 @@ See example Identity Contact definitions (JSON) using this extension in the `/ex
 
 Example Python usage:
 
-`import stix2
+```
+import stix2
 from identity_contact_information.identity_contact_information import (IDENTITY_CONTACT_INFORMATION_EXTENSION_DEFINITION_ID, 
                                                                 IdentityContactInformation, ContactNumber)
 
@@ -21,6 +22,7 @@ identity_extension = stix2.Identity(
             }]
         )  
     }
-)`
+)
+```
 
 Tests can be run with Tox by executing the `tox` command.
