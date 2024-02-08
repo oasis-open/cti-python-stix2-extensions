@@ -5,14 +5,13 @@ on:
       - '!**.py'
       - '!**/tox.ini'
       - '!**/pyproject.toml'
-      - '!**/tox.ini'
-      - '!**/workflows/**.yml'
+      - '!.github/workflows/**.yml'
   pull_request:
     paths:
       - '!**.py'
       - '!**/tox.ini'
       - '!**/pyproject.toml'
-      - '!**/workflows/**.yml'
+      - '!.github/workflows/**.yml'
 
 jobs:
   log:
