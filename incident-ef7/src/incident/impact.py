@@ -1,4 +1,3 @@
-import logging
 from collections import OrderedDict
 
 import stix2
@@ -95,7 +94,6 @@ class IntegrityImpactExt:
 class MonetaryImpactExt:
     def _check_object_constraints(self):
         super()._check_object_constraints()
-        log = logging.getLogger(__name__)
 
         self._check_properties_dependency(
             [
@@ -134,11 +132,11 @@ class MonetaryImpactExt:
             )
 
         if min_amount is not None and max_amount is not None:
-            log.warning(
-                "monetary impact min_amount is greater than max_amount:"
-                " %d > %d",
-                min_amount, max_amount
-            )
+            if min_amount > max_amount:
+                raise ObjectConfigurationError(
+                    "monetary impact min_amount is greater than max_amount:"
+                    " {} > {}".format(min_amount, max_amount)
+                )
 
 
 @stix2.CustomExtension(
@@ -196,7 +194,6 @@ IMPACT_EXTENSION_DEFINITION_ID = 'extension-definition--7cc33dd6-f6a1-489b-98ea-
 class Impact:
     def _check_object_constraints(self):
         super()._check_object_constraints()
-        log = logging.getLogger(__name__)
 
         self._check_properties_dependency(["end_time"], ["superseded_by_ref"])
 
@@ -204,10 +201,10 @@ class Impact:
         end_time = self.get('end_time')
 
         if start_time is not None and end_time is not None:
-            if start_time > end_time:
-                log.warning(
-                    'impact start time is later than end time: %s > %s',
-                    start_time, end_time
+            if start_time >= end_time:
+                raise ObjectConfigurationError(
+                    'impact start time is equal to or later than end time:'
+                    ' {} > {}'.format(start_time, end_time)
                 )
 
         impact_category = self["impact_category"]

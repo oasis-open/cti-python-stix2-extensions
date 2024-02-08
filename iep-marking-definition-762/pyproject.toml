@@ -3,9 +3,9 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "incident-ef7"
+name = "iep-marking-definition-762"
 version = "0.1"
-description = "Implementation of python API for the extensions to the STIX 2.1 incident stub"
+description = "Implementation of python API for the IEP Data Markings extension for STIX 2.1"
 dependencies = [
     "stix2"
 ]
