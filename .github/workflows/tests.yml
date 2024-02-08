@@ -2,16 +2,10 @@ name: cti-python-stix2-extensions test harness
 on:
   push:
     paths:
-      - '**.py'
-      - '**/tox.ini'
-      - '**/pyproject.toml'
-      - '.github/workflows/**.yml'
+      - '**'
   pull_request:
     paths:
-      - '**.py'
-      - '**/tox.ini'
-      - '**/pyproject.toml'
-      - '.github/workflows/**.yml'
+      - '**'
 
 jobs:
   build:
