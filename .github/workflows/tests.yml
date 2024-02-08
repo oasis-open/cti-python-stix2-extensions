@@ -1,5 +1,11 @@
 name: cti-python-stix2-extensions test harness
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - '**'
+  pull_request:
+    paths:
+      - '**'
 
 jobs:
   build:
