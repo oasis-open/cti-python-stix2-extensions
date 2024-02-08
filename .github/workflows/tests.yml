@@ -34,6 +34,8 @@ jobs:
             - 'incident-ef7/**'
           observed-string-8b1:
             - 'observed-string-8b1/**'
+          cui-marking-definition-dff:
+            - 'cui-marking-definition-dff/**'
 
     - name: Test incident-ef7 with Tox
       if: ${{ steps.filter.outputs.incident-ef7 == 'true' }}
@@ -44,3 +46,8 @@ jobs:
       if: ${{ steps.filter.outputs.observed-string-8b1 == 'true' }}
       run: |
         tox -c observed-string-8b1/tox.ini
+
+    - name: Test cui-marking-definition-dff with Tox
+      if: ${{ steps.filter.outputs.cui-marking-definition-dff == 'true' }}
+      run: |
+        tox -c cui-marking-definition-dff/tox.ini
