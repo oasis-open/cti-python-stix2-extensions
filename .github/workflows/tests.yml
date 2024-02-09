@@ -49,7 +49,7 @@ jobs:
         tox -c incident-ef7/tox.ini
 
     - name: Skip testing incident-ef7 with Tox
-      if: ${{ steps.filter.outputs.incident-ef7 !== 'true' }}
+      if: ${{ steps.filter.outputs.incident-ef7 != 'true' }}
       run: |
         echo "Skipped incident-ef7 tests due to no changes"
 
