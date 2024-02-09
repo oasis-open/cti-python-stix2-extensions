@@ -37,7 +37,7 @@ jobs:
           identity-66e:
             - 'identity-66e/**'
           pap-marking-definition-f8d:
-            - 'pap-marking-definition-f8d**/'
+            - 'pap-marking-definition-f8d/**'
 
     - name: Test incident-ef7 with Tox
       if: ${{ steps.filter.outputs.incident-ef7 == 'true' }}
