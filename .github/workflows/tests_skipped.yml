@@ -1,0 +1,23 @@
+name: cti-python-stix2-extensions tests were skipped
+on:
+  push:
+    paths:
+      - '!**.py'
+      - '!**/tox.ini'
+      - '!**/pyproject.toml'
+      - '!.github/workflows/**.yml'
+  pull_request:
+    paths:
+      - '!**.py'
+      - '!**/tox.ini'
+      - '!**/pyproject.toml'
+      - '!.github/workflows/**.yml'
+
+jobs:
+  log:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log Skipped Tests
+        run: |
+          echo "No code changes found to test for any extension"
+

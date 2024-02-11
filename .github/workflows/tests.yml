@@ -3,9 +3,15 @@ on:
   push:
     paths:
       - '**.py'
+      - '**/tox.ini'
+      - '**/pyproject.toml'
+      - '.github/workflows/**.yml'
   pull_request:
     paths:
       - '**.py'
+      - '**/tox.ini'
+      - '**/pyproject.toml'
+      - '.github/workflows/**.yml'
 
 jobs:
   build:
@@ -38,23 +44,56 @@ jobs:
             - 'identity-66e/**'
           pap-marking-definition-f8d:
             - 'pap-marking-definition-f8d/**'
+          cui-marking-definition-dff:
+            - 'cui-marking-definition-dff/**'
 
     - name: Test incident-ef7 with Tox
       if: ${{ steps.filter.outputs.incident-ef7 == 'true' }}
       run: |
         tox -c incident-ef7/tox.ini
 
+    - name: Skip testing incident-ef7 with Tox
+      if: ${{ steps.filter.outputs.incident-ef7 != 'true' }}
+      run: |
+        echo "Skipped incident-ef7 tests due to no changes"
+
     - name: Test observed-string-8b1 with Tox
       if: ${{ steps.filter.outputs.observed-string-8b1 == 'true' }}
       run: |
         tox -c observed-string-8b1/tox.ini
     
+     - name: Skip testing observed-string-8b1 with Tox
+      if: ${{ steps.filter.outputs.observed-string-8b1 != 'true' }}
+      run: |
+        echo "Skipped observed-string-8b1 tests due to no changes"
+        
     - name: Test identity-66e with Tox
       if: ${{ steps.filter.outputs.identity-66e == 'true' }}
       run: |
         tox -c identity-66e/tox.ini
+        
+    - name: Skip testing identity-66e with Tox
+      if: ${{ steps.filter.outputs.identity-66e != 'true' }}
+      run: |
+        echo "Skipped identity-66e tests due to no changes"
 
     - name: Test pap-marking-definition-f8d with Tox
       if: ${{ steps.filter.outputs.pap-marking-definition-f8d == 'true' }}
       run: |
-        tox -c pap-marking-definition-f8d/tox.ini
+        tox -c pap-marking-definition-f8d/tox.in
+        
+     - name: Skip testing pap-marking-definition-f8d with Tox
+      if: ${{ steps.filter.outputs.pap-marking-definition-f8d != 'true' }}
+      run: |
+        echo "Skipped pap-marking-definition-f8d tests due to no changes"
+
+
+    - name: Test cui-marking-definition-dff with Tox
+      if: ${{ steps.filter.outputs.cui-marking-definition-dff == 'true' }}
+      run: |
+        tox -c cui-marking-definition-dff/tox.ini
+
+    - name: Skip testing cui-marking-definition-dff with Tox
+      if: ${{ steps.filter.outputs.cui-marking-definition-dff != 'true' }}
+      run: |
+        echo "Skipped cui-marking-definition-dff tests due to no changes"
