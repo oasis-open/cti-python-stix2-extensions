@@ -61,7 +61,7 @@ jobs:
       run: |
         tox -c observed-string-8b1/tox.ini
     
-     - name: Skip testing observed-string-8b1 with Tox
+    - name: Skip testing observed-string-8b1 with Tox
       if: ${{ steps.filter.outputs.observed-string-8b1 != 'true' }}
       run: |
         echo "Skipped observed-string-8b1 tests due to no changes"
