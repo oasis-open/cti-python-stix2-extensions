@@ -23,7 +23,7 @@ To contribute an extension implementation:
     e.g. using setuptools build backend with a `src-layout <https://setuptools.pypa.io/en/latest/userguide/package_discovery.html#src-layout>`_.
 - Unit tests should be included
     - The code should work on the same versions of Python as the stix2 library
-      it will integrate with.  (suggests we really should have CI enabled,
-      since few will have all those versions of Python installed to test with.)
-- (Should examples be included?  Must they be jupyter notebooks?)
+      it will integrate with.  
+    - In the future, CI will be enabled to run the tests.
+- Examples should be included in an examples directory.  Some examples might found in the `common object repository <https://github.com/oasis-open/cti-stix-common-objects/tree/main/extension-definition-specifications>`_.
 - Make a pull request to merge your work into this repository.
