@@ -11,14 +11,16 @@ PAP_NAMES = [
     "PAP:GREEN",
     "PAP:WHITE",
     "PAP:RED",
-    "PAP:AMBER"
+    "PAP:AMBER",
+    "PAP:CLEAR"
 ]
 
 PAP_COLORS = [
     "green",
     "white",
     "red",
-    "amber"
+    "amber",
+    "clear"
 ]
 
 PAP_AMBER = {
@@ -119,7 +121,18 @@ PAP_WHITE = PAPMarkingDefinition(
     }
 )
 
+PAP_CLEAR = PAPMarkingDefinition(
+    id='marking-definition--ad15a0cd-55b6-4588-a14c-a66105329b92',
+    created="2024-03-12T00:00:00.000Z",
+    name="PAP:CLEAR",
+    extensions={
+        PAP_MARKING_EXTENSION_ID:{
+            'pap': 'white'
+        }
+    }
+)
+
 def check_pap_marking(pap_marking):
-    pap_objects = [PAP_AMBER, PAP_GREEN, PAP_RED, PAP_WHITE]
+    pap_objects = [PAP_AMBER, PAP_GREEN, PAP_RED, PAP_WHITE, PAP_CLEAR]
     if pap_marking not in pap_objects:
         raise PAPMarkingDefinitionError
