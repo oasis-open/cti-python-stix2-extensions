@@ -1,7 +1,7 @@
 from collections import OrderedDict
 
 import stix2
-from stix2.properties import (EnumProperty, FloatProperty, IntegerProperty,
+from stix2.properties import (EmbeddedObjectProperty, EnumProperty, FloatProperty, IntegerProperty,
                               ListProperty, OpenVocabProperty,
                               ReferenceProperty, StringProperty)
 from stix2.v21.base import _STIXBase21
@@ -32,13 +32,13 @@ class IncidentScore(_STIXBase21):
         # optional properties
         ('criticality', IntegerProperty(min=0, max=100)),
         ('detection_methods', ListProperty(OpenVocabProperty(vocab.DETECTION_METHODS))),
-        ('events', ListProperty(EventEntry)),
+        ('events', ListProperty(EmbeddedObjectProperty(EventEntry))),
         ('impact_refs', ListProperty(ReferenceProperty(valid_types='impact'))),
         ('impacted_entity_counts', EntityCountProperty(spec_version='2.1')),
         ('incident_types', ListProperty(OpenVocabProperty(vocab.EVENT_TYPE))),
         ('recoverability', EnumProperty(vocab.RECOVERABILITY)),
-        ('scores', ListProperty(IncidentScore)),
-        ('tasks', ListProperty(TaskEntry)),
+        ('scores', ListProperty(EmbeddedObjectProperty(IncidentScore))),
+        ('tasks', ListProperty(EmbeddedObjectProperty(TaskEntry))),
     ],
 )
 class IncidentExtension:

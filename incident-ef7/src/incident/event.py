@@ -1,11 +1,10 @@
 from collections import OrderedDict
 
 import stix2
-from stix2.exceptions import ObjectConfigurationError
-from stix2.properties import (BooleanProperty, EnumProperty, ListProperty,
-                              OpenVocabProperty, ReferenceProperty,
-                              StringProperty, TimestampProperty)
-from stix2.v21.base import _STIXBase21
+from stix2.properties import (BooleanProperty, EnumProperty, EmbeddedObjectProperty,
+                              IntegerProperty, ListProperty, OpenVocabProperty,
+                              ReferenceProperty, StringProperty,
+                              TimestampProperty)
 
 import incident.vocab as vocab
 from incident.common import StateChange
@@ -29,7 +28,7 @@ class EventEntry(_STIXBase21):
         # required properties
         ('event_ref', ReferenceProperty(valid_types='event', required=True)),
         # optional properties
-        ('next_steps', ListProperty(EventSequenceEntry)),
+        ('next_steps', ListProperty(EmbeddedObjectProperty(EventSequenceEntry))),
         ('sequence_start', BooleanProperty(default=lambda: True))
     ])
 
@@ -40,7 +39,7 @@ class EventEntry(_STIXBase21):
         # required properties
         ('status', EnumProperty(vocab.EVENT_STATUS, required=True)),
         # optional properties
-        ('changed_objects', ListProperty(StateChange)),
+        ('changed_objects', ListProperty(EmbeddedObjectProperty(StateChange))),
         ('description', StringProperty()),
         ('end_time', TimestampProperty()),
         ('end_time_fidelity', EnumProperty(vocab.TIMESTAMP_FIDELITY)),
@@ -50,7 +49,7 @@ class EventEntry(_STIXBase21):
         ('sighting_refs', ListProperty(ReferenceProperty(valid_types='sighting'))),
         ('start_time', TimestampProperty()),
         ('start_time_fidelity', EnumProperty(vocab.TIMESTAMP_FIDELITY)),
-        ('subevents', ListProperty(EventEntry)),
+        ('subevents', ListProperty(EmbeddedObjectProperty(EventEntry))),
     ],
     EVENT_EXTENSION_DEFINITION_ID
 )

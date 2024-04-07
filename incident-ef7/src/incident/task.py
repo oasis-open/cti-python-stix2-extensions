@@ -2,8 +2,8 @@ from collections import OrderedDict
 
 import stix2
 from stix2.exceptions import ObjectConfigurationError
-from stix2.properties import (BooleanProperty, EnumProperty, IntegerProperty,
-                              ListProperty, OpenVocabProperty,
+from stix2.properties import (BooleanProperty, EnumProperty, EmbeddedObjectProperty,
+                              IntegerProperty, ListProperty, OpenVocabProperty,
                               ReferenceProperty, StringProperty,
                               TimestampProperty)
 from stix2.v21 import _STIXBase21
@@ -30,7 +30,7 @@ class TaskEntry(_STIXBase21):
         # required properties
         ('task_ref', ReferenceProperty(valid_types='task', required=True)),
         # optional properties
-        ('next_steps', ListProperty(TaskSequenceEntry)),
+        ('next_steps', ListProperty(EmbeddedObjectProperty(TaskSequenceEntry))),
         ('sequence_start', BooleanProperty(default=lambda: True))
     ])
 
@@ -41,7 +41,7 @@ class TaskEntry(_STIXBase21):
         # required properties
         ('outcome', EnumProperty(vocab.TASK_OUTCOME, required=True)),
         # optional properties
-        ('changed_objects', ListProperty(StateChange)),
+        ('changed_objects', ListProperty(EmbeddedObjectProperty(StateChange))),
         ('task_types', ListProperty(OpenVocabProperty(vocab.TASK_TYPE))),
         ('description', StringProperty()),
         ('end_time', TimestampProperty()),
@@ -52,7 +52,7 @@ class TaskEntry(_STIXBase21):
         ('priority', IntegerProperty(min=0, max=100)),
         ('start_time', TimestampProperty()),
         ('start_time_fidelity', EnumProperty(vocab.TIMESTAMP_FIDELITY)),
-        ('subtasks', ListProperty(TaskEntry))
+        ('subtasks', ListProperty(EmbeddedObjectProperty(TaskEntry)))
     ],
     TASK_EXTENSION_DEFINITION_ID
 )
