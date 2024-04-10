@@ -1,8 +1,6 @@
 import stix2
-from collections import OrderedDict
-from stix2.v21.base import _STIXBase21
 from stix2.v21 import MarkingDefinition
-from stix2.properties import StringProperty, DictionaryProperty, EnumProperty
+from stix2.properties import EnumProperty
 from stix2.exceptions import ObjectConfigurationError
 
 PAP_MARKING_EXTENSION_ID = 'extension-definition--f8d78575-edfd-406e-8e84-6162a8450f5b'
@@ -22,7 +20,7 @@ PAP_COLORS = [
 ]
 
 PAP_AMBER = {
-    'id':'marking-definition--60f8932b-e51e-4458-b265-a2e8be9a80ab',
+    'id': 'marking-definition--60f8932b-e51e-4458-b265-a2e8be9a80ab',
     'created': '2022-10-02T00:00:00.000Z',
     'name': 'PAP:AMBER',
     'extensions': {
@@ -32,15 +30,12 @@ PAP_AMBER = {
     }
 }
 
-def check_pap_marking(pap_marking):
-    pass
 
 @stix2.v21.CustomExtension(
     PAP_MARKING_EXTENSION_ID, [
         ('pap', EnumProperty(PAP_COLORS, required=True))
     ]
 )
-
 class PAPExtension:
     extension_type = 'property-extension'
 
@@ -48,7 +43,7 @@ class PAPExtension:
 class PAPMarkingDefinitionError(ObjectConfigurationError):
 
     def __str__(self):
-        msg = "The only instances of PAP marking definitions permitted are those defined in the PAP Extension Specification"
+        return "The only instances of PAP marking definitions permitted are those defined in the PAP Extension Specification"
 
 
 class PAPMarkingDefinition(MarkingDefinition):
@@ -118,6 +113,7 @@ PAP_WHITE = PAPMarkingDefinition(
         }
     }
 )
+
 
 def check_pap_marking(pap_marking):
     pap_objects = [PAP_AMBER, PAP_GREEN, PAP_RED, PAP_WHITE]

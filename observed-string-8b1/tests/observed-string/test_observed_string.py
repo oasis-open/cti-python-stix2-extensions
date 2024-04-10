@@ -3,11 +3,9 @@ import stix2
 import stix2.exceptions
 import stix2.properties
 
-from stix2.properties import (OpenVocabProperty,
-                              StringProperty)
 from stix2.exceptions import MissingPropertiesError
 
-from observed_string.observed_string import ObservedString, OBSERVED_STRING_EXTENSION_ID
+from observed_string.observed_string import ObservedString
 
 def test_parse_all_props():
     obs_dict = {
