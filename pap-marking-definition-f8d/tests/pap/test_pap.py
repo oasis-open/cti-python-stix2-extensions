@@ -31,7 +31,7 @@ def test_bad_pap_green():
         )
 
 def test_bad_pap_red():
-    with pytest.raises(stix2.exceptions.InvalidValueError):
+    with pytest.raises(PAPMarkingDefinitionError):
         PAPMarkingDefinition(
             id='marking-definition--740d36e5-7714-4c30-961a-3ae632ceee0e',
             created="2022-10-06T00:00:00.000Z",
