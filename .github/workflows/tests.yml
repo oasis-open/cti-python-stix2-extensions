@@ -79,7 +79,7 @@ jobs:
     - name: Test pap-marking-definition-f8d with Tox
       if: ${{ steps.filter.outputs.pap-marking-definition-f8d == 'true' }}
       run: |
-        tox -c pap-marking-definition-f8d/tox.in
+        tox -c pap-marking-definition-f8d/tox.ini
         
     - name: Skip testing pap-marking-definition-f8d with Tox
       if: ${{ steps.filter.outputs.pap-marking-definition-f8d != 'true' }}
