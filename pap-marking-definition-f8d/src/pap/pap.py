@@ -32,6 +32,50 @@ PAP_AMBER = {
     }
 }
 
+PAP_GREEN = {
+    'id':'marking-definition--c43594d1-4b11-4c59-93ab-1c9b14d53ce9',
+    'created':"2022-10-09T00:00:00.000Z",
+    'name':"PAP:GREEN",
+    'extensions':{
+        PAP_MARKING_EXTENSION_ID:{
+            'pap':'green'
+        }
+    }
+}
+
+PAP_RED = {
+    'id':'marking-definition--740d36e5-7714-4c30-961a-3ae632ceee0e',
+    'created':"2022-10-06T00:00:00.000Z",
+    'name':"PAP:RED",
+    'extensions':{
+        PAP_MARKING_EXTENSION_ID:{
+            'pap':'red'
+        }
+    }
+}
+
+PAP_WHITE = {
+    'id':'marking-definition--a3bea94c-b469-41dc-9cfe-d6e7daba7730',
+    'created':"2022-10-01T00:00:00.000Z",
+    'name':"PAP:WHITE",
+    'extensions':{
+        PAP_MARKING_EXTENSION_ID:{
+            'pap':'white'
+        }
+    }
+}
+
+PAP_CLEAR = {
+    'id':'marking-definition--ad15a0cd-55b6-4588-a14c-a66105329b92',
+    'created':"2024-03-12T00:00:00.000Z",
+    'name':"PAP:CLEAR",
+    'extensions':{
+        PAP_MARKING_EXTENSION_ID:{
+            'pap': 'white'
+        }
+    }
+}
+
 
 @stix2.v21.CustomExtension(
     PAP_MARKING_EXTENSION_ID, [
