@@ -15,25 +15,6 @@ from incident.util import validate_event_sequence
 EVENT_EXTENSION_DEFINITION_ID = 'extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e'
 
 
-class EventSequenceEntry(_STIXBase21):
-    _properties = OrderedDict([
-        # required properties
-        ('event_ref', ReferenceProperty(valid_types='event', required=True)),
-        ('condition_type', EnumProperty(vocab.ACTIVITY_CONDITION, required=True)),
-        ('transition_type', EnumProperty(vocab.ACTIVITY_TRANSITION, required=True))
-    ])
-
-
-class EventEntry(_STIXBase21):
-    _properties = OrderedDict([
-        # required properties
-        ('event_ref', ReferenceProperty(valid_types='event', required=True)),
-        # optional properties
-        ('next_steps', ListProperty(EventSequenceEntry)),
-        ('sequence_start', BooleanProperty(default=lambda: True))
-    ])
-
-
 @stix2.v21.CustomObject(
     'event',
     [
@@ -47,10 +28,10 @@ class EventEntry(_STIXBase21):
         ('event_types', ListProperty(OpenVocabProperty(vocab.EVENT_TYPE))),
         ('goal', StringProperty()),
         ('name', StringProperty()),
+        ('next_event_ref', ListProperty(ReferenceProperty(valid_types='event'))),
         ('sighting_refs', ListProperty(ReferenceProperty(valid_types='sighting'))),
         ('start_time', TimestampProperty()),
-        ('start_time_fidelity', EnumProperty(vocab.TIMESTAMP_FIDELITY)),
-        ('subevents', ListProperty(EventEntry)),
+        ('start_time_fidelity', EnumProperty(vocab.TIMESTAMP_FIDELITY))
     ],
     EVENT_EXTENSION_DEFINITION_ID
 )
@@ -58,7 +39,6 @@ class Event:
     def _check_object_constraints(self):
         super()._check_object_constraints()
 
-        validate_event_sequence(self.get("subevents"))
 
         start_time = self.get('start_time')
         end_time = self.get('end_time')
