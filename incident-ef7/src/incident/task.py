@@ -10,7 +10,7 @@ from stix2.v21 import _STIXBase21
 
 import util
 import vocab
-from common import EntityCountProperty, StateChange
+from .common import EntityCountProperty, StateChange
 
 # Event Extension Data
 TASK_EXTENSION_DEFINITION_ID = 'extension-definition--2074a052-8be4-4932-849e-f5e7798e0030'

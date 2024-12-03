@@ -7,7 +7,7 @@ from stix2.properties import (EnumProperty, FloatProperty, IntegerProperty,
 from stix2.v21.base import _STIXBase21
 
 import vocab
-from common import EntityCountProperty
+from .common import EntityCountProperty
 
 
 INCIDENT_EXTENSION_DEFINITION_ID = 'extension-definition--ef765651-680c-498d-9894-99799f2fa126'

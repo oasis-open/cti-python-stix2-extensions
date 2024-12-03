@@ -8,8 +8,7 @@ from stix2.properties import (BooleanProperty, EnumProperty, ListProperty,
 from stix2.v21.base import _STIXBase21
 
 import incident.vocab as vocab
-from incident.common import StateChange
-from incident.util import validate_event_sequence
+from .common import StateChange
 
 # Event Extension Data
 EVENT_EXTENSION_DEFINITION_ID = 'extension-definition--4ca6de00-5b0d-45ef-a1dc-ea7279ea910e'
@@ -38,7 +37,6 @@ EVENT_EXTENSION_DEFINITION_ID = 'extension-definition--4ca6de00-5b0d-45ef-a1dc-e
 class Event:
     def _check_object_constraints(self):
         super()._check_object_constraints()
-
 
         start_time = self.get('start_time')
         end_time = self.get('end_time')
