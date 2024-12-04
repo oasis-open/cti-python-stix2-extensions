@@ -2,11 +2,10 @@ from collections import OrderedDict
 
 import stix2
 from stix2.exceptions import ObjectConfigurationError
-from stix2.properties import (BooleanProperty, EnumProperty, IntegerProperty,
+from stix2.properties import (EnumProperty, IntegerProperty,
                               ListProperty, OpenVocabProperty,
                               ReferenceProperty, StringProperty,
                               TimestampProperty)
-from stix2.v21 import _STIXBase21
 
 import util
 import vocab

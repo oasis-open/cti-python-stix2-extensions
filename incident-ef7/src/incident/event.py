@@ -2,10 +2,9 @@ from collections import OrderedDict
 
 import stix2
 from stix2.exceptions import ObjectConfigurationError
-from stix2.properties import (BooleanProperty, EnumProperty, ListProperty,
+from stix2.properties import (numProperty, ListProperty,
                               OpenVocabProperty, ReferenceProperty,
                               StringProperty, TimestampProperty)
-from stix2.v21.base import _STIXBase21
 
 import incident.vocab as vocab
 from .common import StateChange
