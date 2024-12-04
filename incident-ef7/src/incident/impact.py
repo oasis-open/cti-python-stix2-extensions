@@ -7,9 +7,9 @@ from stix2.properties import (EnumProperty, FloatProperty, IntegerProperty,
                               ReferenceProperty, StringProperty,
                               TimestampProperty)
 
-import incident.vocab as vocab
-from incident.common import EntityCountProperty
-from incident.util import check_open_bounds
+import vocab as vocab
+from .common import EntityCountProperty
+from .util import check_open_bounds
 
 
 @stix2.CustomExtension(
