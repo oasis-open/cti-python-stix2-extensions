@@ -26,7 +26,7 @@ EVENT_EXTENSION_DEFINITION_ID = 'extension-definition--4ca6de00-5b0d-45ef-a1dc-e
         ('event_types', ListProperty(OpenVocabProperty(vocab.EVENT_TYPE))),
         ('goal', StringProperty()),
         ('name', StringProperty()),
-        ('next_event_ref', ListProperty(ReferenceProperty(valid_types='event'))),
+        ('next_event_refs', ListProperty(ReferenceProperty(valid_types='event'))),
         ('sighting_refs', ListProperty(ReferenceProperty(valid_types='sighting'))),
         ('start_time', TimestampProperty()),
         ('start_time_fidelity', EnumProperty(vocab.TIMESTAMP_FIDELITY))

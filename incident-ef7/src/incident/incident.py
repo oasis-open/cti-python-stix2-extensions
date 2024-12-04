@@ -6,7 +6,7 @@ from stix2.properties import (EmbeddedObjectProperty, EnumProperty, FloatPropert
                               ReferenceProperty, StringProperty)
 from stix2.v21.base import _STIXBase21
 
-import vocab
+import incident.vocab as vocab
 from .common import EntityCountProperty
 
 

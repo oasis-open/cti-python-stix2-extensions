@@ -19,6 +19,7 @@ DIGITAL_CONTACT_OV = [
     "work"
 ]
 
+
 class ContactNumber(_STIXBase21):
 
     _properties = OrderedDict([
@@ -50,7 +51,10 @@ class SocialMediaContact(_STIXBase21):
 
 
 @stix2.v21.CustomExtension(
-    IDENTITY_CONTACT_INFORMATION_EXTENSION_DEFINITION_ID, [
+    applies_to="sdo",
+    type=IDENTITY_CONTACT_INFORMATION_EXTENSION_DEFINITION_ID,
+    properties=
+    [
         ('contact_numbers', ListProperty(ContactNumber)),
         ('email_addresses', ListProperty(EmailContact)),
         ('first_name', StringProperty()),
