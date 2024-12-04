@@ -1,7 +1,9 @@
 import stix2
 from collections import OrderedDict
 from stix2.v21.base import _STIXBase21
-from stix2.properties import StringProperty, ListProperty, ReferenceProperty, BooleanProperty, OpenVocabProperty
+from stix2.properties import (EmbeddedObjectProperty, StringProperty, ListProperty, ReferenceProperty,
+                              BooleanProperty, OpenVocabProperty
+                              )
 
 IDENTITY_CONTACT_INFORMATION_EXTENSION_DEFINITION_ID = 'extension-definition--66e2492a-bbd3-4be6-88f5-cc91a017a498'
 
@@ -55,8 +57,8 @@ class SocialMediaContact(_STIXBase21):
     type=IDENTITY_CONTACT_INFORMATION_EXTENSION_DEFINITION_ID,
     properties=
     [
-        ('contact_numbers', ListProperty(ContactNumber)),
-        ('email_addresses', ListProperty(EmailContact)),
+        ('contact_numbers', ListProperty(EmbeddedObjectProperty(ContactNumber))),
+        ('email_addresses', ListProperty(EmbeddedObjectProperty(EmailContact))),
         ('first_name', StringProperty()),
         ('last_name', StringProperty()),
         ('middle_name', StringProperty()),
