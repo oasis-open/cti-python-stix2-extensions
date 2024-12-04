@@ -1,7 +1,7 @@
 from collections import OrderedDict
 
 import stix2
-from stix2.properties import (EnumProperty, FloatProperty, IntegerProperty,
+from stix2.properties import (EmbeddedObjectProperty, EnumProperty, FloatProperty, IntegerProperty,
                               ListProperty, OpenVocabProperty,
                               ReferenceProperty, StringProperty)
 from stix2.v21.base import _STIXBase21
@@ -24,7 +24,9 @@ class IncidentScore(_STIXBase21):
 
 
 @stix2.v21.CustomExtension(
-    INCIDENT_EXTENSION_DEFINITION_ID, [
+    applies_to="sdo",
+    type=INCIDENT_EXTENSION_DEFINITION_ID,
+    properties=[
         # required properties
         ('determination', EnumProperty(vocab.INCIDENT_DETERMINATION, required=True)),
         ('investigation_status', OpenVocabProperty(vocab.INCIDENT_INVESTIGATION, required=True)),

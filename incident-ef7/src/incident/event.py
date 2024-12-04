@@ -2,7 +2,7 @@ from collections import OrderedDict
 
 import stix2
 from stix2.exceptions import ObjectConfigurationError
-from stix2.properties import (numProperty, ListProperty,
+from stix2.properties import (EmbeddedObjectProperty, EnumProperty, ListProperty,
                               OpenVocabProperty, ReferenceProperty,
                               StringProperty, TimestampProperty)
 
@@ -19,7 +19,7 @@ EVENT_EXTENSION_DEFINITION_ID = 'extension-definition--4ca6de00-5b0d-45ef-a1dc-e
         # required properties
         ('status', EnumProperty(vocab.EVENT_STATUS, required=True)),
         # optional properties
-        ('changed_objects', ListProperty(StateChange)),
+        ('changed_objects', ListProperty(EmbeddedObjectProperty(type=StateChange))),
         ('description', StringProperty()),
         ('end_time', TimestampProperty()),
         ('end_time_fidelity', EnumProperty(vocab.TIMESTAMP_FIDELITY)),

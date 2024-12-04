@@ -13,6 +13,7 @@ from .util import check_open_bounds
 
 
 @stix2.CustomExtension(
+    applies_to="sdo",
     type="availability-ext",
     properties=OrderedDict([
         # required properties
@@ -24,6 +25,7 @@ class AvailabilityImpactExt:
 
 
 @stix2.CustomExtension(
+    applies_to="sdo",
     type="confidentiality-ext",
     properties=OrderedDict([
         # required properties
@@ -46,6 +48,7 @@ class ConfidentialityImpactExt:
 
 
 @stix2.CustomExtension(
+    applies_to="sdo",
     type="external-ext",
     properties=OrderedDict([
         # required properties
@@ -57,6 +60,7 @@ class ExternalImpactExt:
 
 
 @stix2.CustomExtension(
+    applies_to="sdo",
     type="integrity-ext",
     properties=OrderedDict([
         # required properties
@@ -78,6 +82,7 @@ class IntegrityImpactExt:
 
 
 @stix2.CustomExtension(
+    applies_to="sdo",
     type="monetary-ext",
     properties=OrderedDict([
         # required properties
@@ -140,6 +145,7 @@ class MonetaryImpactExt:
 
 
 @stix2.CustomExtension(
+    applies_to="sdo",
     type="physical-ext",
     properties=OrderedDict([
         # required properties
@@ -158,6 +164,7 @@ class PhysicalImpactExt:
 
 
 @stix2.CustomExtension(
+    applies_to="sdo",
     type="traceability-ext",
     properties=OrderedDict([
         # required properties

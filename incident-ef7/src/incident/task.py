@@ -7,9 +7,9 @@ from stix2.properties import (EnumProperty, IntegerProperty,
                               ReferenceProperty, StringProperty,
                               TimestampProperty)
 
-import util
-import vocab
-from .common import EntityCountProperty, StateChange
+import util as util
+import vocab as vocab
+from common import EntityCountProperty, StateChange
 
 # Event Extension Data
 TASK_EXTENSION_DEFINITION_ID = 'extension-definition--2074a052-8be4-4932-849e-f5e7798e0030'
@@ -27,7 +27,7 @@ TASK_EXTENSION_DEFINITION_ID = 'extension-definition--2074a052-8be4-4932-849e-f5
         ('end_time', TimestampProperty()),
         ('end_time_fidelity', EnumProperty(vocab.TIMESTAMP_FIDELITY)),
         ('error', StringProperty()),
-        ('impacted_entity_types', EntityCountProperty(spec_version='2.1')),
+        ('impacted_entity_counts', EntityCountProperty(valid_types=[IntegerProperty, FloatProperty], spec_version='2.1')),
         ('name', StringProperty()),
         ('next_task_ref', ListProperty(ReferenceProperty(valid_types='task'))),
         ('priority', IntegerProperty(min=0, max=100)),
