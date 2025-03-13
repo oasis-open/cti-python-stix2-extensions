@@ -222,8 +222,7 @@ class Impact:
                 )
 
         impact_category = self["impact_category"]
-        extensions = self.get("extensions")
-        if extensions is None or impact_category not in extensions:
+        if impact_category and impact_category + "-ext" not in self.get("extensions"):
             raise InvalidValueError(
                 self.__class__, "impact_category",
                 "must match the name of one of this object's impact"

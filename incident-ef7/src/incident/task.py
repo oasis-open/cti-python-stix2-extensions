@@ -24,10 +24,11 @@ TASK_EXTENSION_DEFINITION_ID = 'extension-definition--2074a052-8be4-4932-849e-f5
         ('changed_objects', ListProperty(StateChange)),
         ('task_types', ListProperty(OpenVocabProperty(vocab.TASK_TYPE))),
         ('description', StringProperty()),
+        ('due_date', TimestampProperty()),
         ('end_time', TimestampProperty()),
         ('end_time_fidelity', EnumProperty(vocab.TIMESTAMP_FIDELITY)),
         ('error', StringProperty()),
-        ('impacted_entity_counts', EntityCountProperty(valid_types=[IntegerProperty, FloatProperty], spec_version='2.1')),
+        ('affected_entity_counts', EntityCountProperty(valid_types=[IntegerProperty, FloatProperty], spec_version='2.1')),
         ('name', StringProperty()),
         ('next_task_refs', ListProperty(ReferenceProperty(valid_types='task'))),
         ('priority', IntegerProperty(min=0, max=100)),
@@ -44,8 +45,8 @@ class Task:
         end_time = self.get('end_time')
 
         if start_time is not None and end_time is not None:
-            if start_time >= end_time:
+            if start_time > end_time:
                 raise ObjectConfigurationError(
-                    'task start time is equal to or later than end time:'
-                    ' {} >= {}'.format(start_time, end_time),
+                    'task start time is later than end time:'
+                    ' {} > {}'.format(start_time, end_time),
                 )

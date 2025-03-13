@@ -41,8 +41,8 @@ class Event:
         end_time = self.get('end_time')
 
         if start_time is not None and end_time is not None:
-            if start_time >= end_time:
+            if start_time > end_time:
                 raise ObjectConfigurationError(
-                    'event start time is equal to or later than end time:'
-                    ' {} >= {}'.format(start_time, end_time)
+                    'event start time is later than end time:'
+                    ' {} > {}'.format(start_time, end_time)
                 )
