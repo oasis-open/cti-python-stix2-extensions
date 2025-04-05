@@ -59,6 +59,7 @@ class SocialMediaContact(_STIXBase21):
     [
         ('contact_numbers', ListProperty(EmbeddedObjectProperty(ContactNumber))),
         ('email_addresses', ListProperty(EmbeddedObjectProperty(EmailContact))),
+        ("websites", ListProperty(StringProperty)),
         ('first_name', StringProperty()),
         ('last_name', StringProperty()),
         ('middle_name', StringProperty()),

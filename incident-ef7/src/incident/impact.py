@@ -87,10 +87,10 @@ class IntegrityImpactExt:
 
 @stix2.CustomExtension(
     applies_to="sdo",
-    type="monetary-ext",
+    type="economic-ext",
     properties=OrderedDict([
         # required properties
-        ('variety', OpenVocabProperty(vocab.MONETARY_IMPACT, required=True)),
+        ('variety', OpenVocabProperty(vocab.ECONOMIC_IMPACT, required=True)),
         ('extension_type', StringProperty(fixed=None)),  # needed to indicate it's a sub object extension
         # optional properties
         ('conversion_rate', FloatProperty()),
@@ -101,23 +101,36 @@ class IntegrityImpactExt:
         ('min_amount', FloatProperty())
     ])
 )
-class MonetaryImpactExt:
+class EconomicImpactExt:
     def _check_object_constraints(self):
         super()._check_object_constraints()
 
+        # Based on these requirements from the schema:
+        #
+        # "dependentRequired": {
+        #     "$comment": "'not currency_actual implies not conversion_rate' not specified here, but is in the spec",
+        #     "min_amount": ["currency", "max_amount"],
+        #     "currency_actual": ["currency", "conversion_rate"],
+        #     "conversion_rate": ["conversion_time"]
+        # }
+
         self._check_properties_dependency(
             [
-                'min_amount', 'max_amount', 'currency', "currency_actual",
-                "conversion_rate", "conversion_time"
+                "currency", "max_amount"
             ],
-            ['min_amount', 'max_amount']
+            ["min_amount"]
         )
         self._check_properties_dependency(
             [
-                "currency", "conversion_time", "currency_actual",
-                "conversion_rate"
+                "currency", "conversion_rate"
             ],
-            ["conversion_rate", "currency_actual"]
+            ["currency_actual"]
+        )
+        self._check_properties_dependency(
+            [
+                "conversion_time"
+            ],
+            ["conversion_rate"]
         )
 
         conversion_rate = self.get("conversion_rate")
