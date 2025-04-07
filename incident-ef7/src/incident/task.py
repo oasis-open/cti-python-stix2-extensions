@@ -1,5 +1,3 @@
-from collections import OrderedDict
-
 import stix2
 from stix2.exceptions import ObjectConfigurationError
 from stix2.properties import (EnumProperty, FloatProperty, IntegerProperty,
