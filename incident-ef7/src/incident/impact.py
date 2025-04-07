@@ -7,16 +7,18 @@ from stix2.properties import (EnumProperty, FloatProperty, IntegerProperty,
                               ReferenceProperty, StringProperty,
                               TimestampProperty)
 
-import vocab as vocab
+import incident.vocab as vocab
 from .common import EntityCountProperty
 from .util import check_open_bounds
 
 
 @stix2.CustomExtension(
+    applies_to="sdo",
     type="availability-ext",
     properties=OrderedDict([
         # required properties
         ('availability_impact', IntegerProperty(min=0, max=100, required=True)),
+        ('extension_type', StringProperty(fixed=None)),  # needed to indicate it's a sub object extension
     ])
 )
 class AvailabilityImpactExt:
@@ -24,10 +26,12 @@ class AvailabilityImpactExt:
 
 
 @stix2.CustomExtension(
+    applies_to="sdo",
     type="confidentiality-ext",
     properties=OrderedDict([
         # required properties
         ('loss_type', EnumProperty(vocab.CONFIDENTIALITY_LOSS, required=True)),
+        ('extension_type', StringProperty(fixed=None)),  # needed to indicate it's a sub object extension
         # optional properties
         ('information_type', OpenVocabProperty(vocab.INFORMATION_TYPE)),
         ('record_count', IntegerProperty(min=0)),
@@ -46,10 +50,12 @@ class ConfidentialityImpactExt:
 
 
 @stix2.CustomExtension(
+    applies_to="sdo",
     type="external-ext",
     properties=OrderedDict([
         # required properties
         ('impact_type', OpenVocabProperty(vocab.EXTERNAL_IMPACT, required=True)),
+        ('extension_type', StringProperty(fixed=None)),  # needed to indicate it's a sub object extension
     ])
 )
 class ExternalImpactExt:
@@ -57,10 +63,12 @@ class ExternalImpactExt:
 
 
 @stix2.CustomExtension(
+    applies_to="sdo",
     type="integrity-ext",
     properties=OrderedDict([
         # required properties
         ('alteration', EnumProperty(vocab.INTEGRITY_ALTERATION, required=True)),
+        ('extension_type', StringProperty(fixed=None)),  # needed to indicate it's a sub object extension
         # optional properties
         ('information_type', OpenVocabProperty(vocab.INFORMATION_TYPE)),
         ('record_count', IntegerProperty(min=0)),
@@ -78,10 +86,12 @@ class IntegrityImpactExt:
 
 
 @stix2.CustomExtension(
-    type="monetary-ext",
+    applies_to="sdo",
+    type="economic-ext",
     properties=OrderedDict([
         # required properties
-        ('variety', OpenVocabProperty(vocab.MONETARY_IMPACT, required=True)),
+        ('variety', OpenVocabProperty(vocab.ECONOMIC_IMPACT, required=True)),
+        ('extension_type', StringProperty(fixed=None)),  # needed to indicate it's a sub object extension
         # optional properties
         ('conversion_rate', FloatProperty()),
         ('conversion_time', TimestampProperty()),
@@ -91,23 +101,36 @@ class IntegrityImpactExt:
         ('min_amount', FloatProperty())
     ])
 )
-class MonetaryImpactExt:
+class EconomicImpactExt:
     def _check_object_constraints(self):
         super()._check_object_constraints()
 
+        # Based on these requirements from the schema:
+        #
+        # "dependentRequired": {
+        #     "$comment": "'not currency_actual implies not conversion_rate' not specified here, but is in the spec",
+        #     "min_amount": ["currency", "max_amount"],
+        #     "currency_actual": ["currency", "conversion_rate"],
+        #     "conversion_rate": ["conversion_time"]
+        # }
+
         self._check_properties_dependency(
             [
-                'min_amount', 'max_amount', 'currency', "currency_actual",
-                "conversion_rate", "conversion_time"
+                "currency", "max_amount"
             ],
-            ['min_amount', 'max_amount']
+            ["min_amount"]
         )
         self._check_properties_dependency(
             [
-                "currency", "conversion_time", "currency_actual",
-                "conversion_rate"
+                "currency", "conversion_rate"
             ],
-            ["conversion_rate", "currency_actual"]
+            ["currency_actual"]
+        )
+        self._check_properties_dependency(
+            [
+                "conversion_time"
+            ],
+            ["conversion_rate"]
         )
 
         conversion_rate = self.get("conversion_rate")
@@ -140,10 +163,12 @@ class MonetaryImpactExt:
 
 
 @stix2.CustomExtension(
+    applies_to="sdo",
     type="physical-ext",
     properties=OrderedDict([
         # required properties
         ('impact_type', EnumProperty(vocab.PHYSICAL_IMPACT, required=True)),
+        ('extension_type', StringProperty(fixed=None)),  # needed to indicate it's a sub object extension
         # optional properties
         ('asset_type', OpenVocabProperty(vocab.ASSET_TYPE))
     ])
@@ -158,10 +183,12 @@ class PhysicalImpactExt:
 
 
 @stix2.CustomExtension(
+    applies_to="sdo",
     type="traceability-ext",
     properties=OrderedDict([
         # required properties
-        ('traceability_impact', EnumProperty(vocab.TRACEABILITY_IMPACT, required=True))
+        ('traceability_impact', EnumProperty(vocab.TRACEABILITY_IMPACT, required=True)),
+        ('extension_type', StringProperty(fixed=None)),  # needed to indicate it's a sub object extension
     ])
 )
 class TraceabilityImpactExt:
@@ -208,8 +235,7 @@ class Impact:
                 )
 
         impact_category = self["impact_category"]
-        extensions = self.get("extensions")
-        if extensions is None or impact_category not in extensions:
+        if impact_category and impact_category + "-ext" not in self.get("extensions"):
             raise InvalidValueError(
                 self.__class__, "impact_category",
                 "must match the name of one of this object's impact"

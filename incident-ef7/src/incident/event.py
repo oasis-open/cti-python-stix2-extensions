@@ -5,9 +5,12 @@ from stix2.exceptions import ObjectConfigurationError
 from stix2.properties import (EmbeddedObjectProperty, EnumProperty, ListProperty,
                               OpenVocabProperty, ReferenceProperty,
                               StringProperty, TimestampProperty)
-from stix2.v21.base import _STIXBase21
 
+<<<<<<< HEAD
 import vocab as vocab
+=======
+import incident.vocab as vocab
+>>>>>>> fix-incident-impact
 from .common import StateChange
 
 # Event Extension Data
@@ -27,10 +30,10 @@ EVENT_EXTENSION_DEFINITION_ID = 'extension-definition--4ca6de00-5b0d-45ef-a1dc-e
         ('event_types', ListProperty(OpenVocabProperty(vocab.EVENT_TYPE))),
         ('goal', StringProperty()),
         ('name', StringProperty()),
-        ('next_event_ref', ListProperty(ReferenceProperty(valid_types='event'))),
+        ('next_event_refs', ListProperty(ReferenceProperty(valid_types='event'))),
         ('sighting_refs', ListProperty(ReferenceProperty(valid_types='sighting'))),
         ('start_time', TimestampProperty()),
-        ('start_time_fidelity', EnumProperty(vocab.TIMESTAMP_FIDELITY)),
+        ('start_time_fidelity', EnumProperty(vocab.TIMESTAMP_FIDELITY))
     ],
     EVENT_EXTENSION_DEFINITION_ID
 )
@@ -42,8 +45,8 @@ class Event:
         end_time = self.get('end_time')
 
         if start_time is not None and end_time is not None:
-            if start_time >= end_time:
+            if start_time > end_time:
                 raise ObjectConfigurationError(
-                    'event start time is equal to or later than end time:'
-                    ' {} >= {}'.format(start_time, end_time)
+                    'event start time is later than end time:'
+                    ' {} > {}'.format(start_time, end_time)
                 )
