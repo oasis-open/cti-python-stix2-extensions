@@ -6,11 +6,7 @@ from stix2.properties import (EmbeddedObjectProperty, EnumProperty, ListProperty
                               OpenVocabProperty, ReferenceProperty,
                               StringProperty, TimestampProperty)
 
-<<<<<<< HEAD
-import vocab as vocab
-=======
 import incident.vocab as vocab
->>>>>>> fix-incident-impact
 from .common import StateChange
 
 # Event Extension Data

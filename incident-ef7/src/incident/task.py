@@ -7,9 +7,8 @@ from stix2.properties import (EnumProperty, FloatProperty, IntegerProperty,
                               ReferenceProperty, StringProperty,
                               TimestampProperty)
 
-import util as util
-import vocab as vocab
-from common import EntityCountProperty, StateChange
+import incident.vocab as vocab
+from incident.common import EntityCountProperty, StateChange
 
 # Event Extension Data
 TASK_EXTENSION_DEFINITION_ID = 'extension-definition--2074a052-8be4-4932-849e-f5e7798e0030'
