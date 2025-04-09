@@ -203,7 +203,7 @@ IMPACT_EXTENSION_DEFINITION_ID = 'extension-definition--7cc33dd6-f6a1-489b-98ea-
     'impact',
     [
         # required properties
-        ('impact_category', StringProperty(required=True)),
+        ('impact_category', StringProperty()),
         # optional properties
         ('criticality', IntegerProperty(min=0, max=100)),
         ('description', StringProperty()),
@@ -214,6 +214,7 @@ IMPACT_EXTENSION_DEFINITION_ID = 'extension-definition--7cc33dd6-f6a1-489b-98ea-
         ('recoverability', EnumProperty(vocab.RECOVERABILITY)),
         ('start_time', TimestampProperty()),
         ('start_time_fidelity', EnumProperty(vocab.TIMESTAMP_FIDELITY)),
+        ('sub_impact_refs', ListProperty(ReferenceProperty(valid_types='impact'))),
         ('superseded_by_ref', ReferenceProperty(valid_types='impact'))
     ],
     IMPACT_EXTENSION_DEFINITION_ID
@@ -228,7 +229,7 @@ class Impact:
         end_time = self.get('end_time')
 
         if start_time is not None and end_time is not None:
-            if start_time >= end_time:
+            if start_time > end_time:
                 raise ObjectConfigurationError(
                     'impact start time is equal to or later than end time:'
                     ' {} > {}'.format(start_time, end_time)

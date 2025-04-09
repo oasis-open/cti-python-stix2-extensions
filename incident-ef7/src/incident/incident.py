@@ -35,7 +35,6 @@ class IncidentScore(_STIXBase21):
         ('detection_methods', ListProperty(OpenVocabProperty(vocab.DETECTION_METHODS))),
         ('event_refs', ListProperty(ReferenceProperty(valid_types='event'))),
         ('impact_refs', ListProperty(ReferenceProperty(valid_types='impact'))),
-        ('impacted_entity_counts', EntityCountProperty(spec_version='2.1')),
         ('incident_types', ListProperty(OpenVocabProperty(vocab.EVENT_TYPE))),
         ('recoverability', EnumProperty(vocab.RECOVERABILITY)),
         ('scores', ListProperty(IncidentScore)),

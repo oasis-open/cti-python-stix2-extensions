@@ -26,7 +26,7 @@ class ContactNumber(_STIXBase21):
 
     _properties = OrderedDict([
         ('description', StringProperty()),
-        ('contact_number_type', OpenVocabProperty(CONTACT_NUMBER_OV, required=True)),
+        ('contact_number_type', OpenVocabProperty(CONTACT_NUMBER_OV)),
         ('contact_number', StringProperty(required=True)),
         ('classified', BooleanProperty())
     ])
@@ -36,7 +36,7 @@ class EmailContact(_STIXBase21):
 
     _properties = OrderedDict([
         ('description', StringProperty()),
-        ('digital_contact_type', OpenVocabProperty(DIGITAL_CONTACT_OV, required=True)),
+        ('digital_contact_type', OpenVocabProperty(DIGITAL_CONTACT_OV)),
         ("email_address_ref", ReferenceProperty(valid_types='email-addr', spec_version='2.1', required=True)),
         ('classified', BooleanProperty())
     ])
@@ -46,7 +46,7 @@ class SocialMediaContact(_STIXBase21):
 
     _properties = OrderedDict([
         ('description', StringProperty()),
-        ('digital_contact_type', OpenVocabProperty(DIGITAL_CONTACT_OV, required=True)),
+        ('digital_contact_type', OpenVocabProperty(DIGITAL_CONTACT_OV)),
         ('user_account_ref', ReferenceProperty(valid_types='user-account', spec_version='2.1', required=True)),
         ('classified', BooleanProperty())
     ])
@@ -64,7 +64,7 @@ class SocialMediaContact(_STIXBase21):
         ('last_name', StringProperty()),
         ('middle_name', StringProperty()),
         ('prefix', StringProperty()),
-        ('social_media_accounts', ListProperty(SocialMediaContact)),
+        ('social_media_accounts', ListProperty(EmbeddedObjectProperty(SocialMediaContact))),
         ('suffix', StringProperty()),
     ],
 )
