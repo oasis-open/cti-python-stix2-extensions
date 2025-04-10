@@ -18,7 +18,6 @@ from .util import check_open_bounds
     properties=OrderedDict([
         # required properties
         ('availability_impact', IntegerProperty(min=0, max=100, required=True)),
-        ('extension_type', StringProperty(fixed=None)),  # needed to indicate it's a sub object extension
     ])
 )
 class AvailabilityImpactExt:
@@ -31,7 +30,6 @@ class AvailabilityImpactExt:
     properties=OrderedDict([
         # required properties
         ('loss_type', EnumProperty(vocab.CONFIDENTIALITY_LOSS, required=True)),
-        ('extension_type', StringProperty(fixed=None)),  # needed to indicate it's a sub object extension
         # optional properties
         ('information_type', OpenVocabProperty(vocab.INFORMATION_TYPE)),
         ('record_count', IntegerProperty(min=0)),
@@ -55,7 +53,6 @@ class ConfidentialityImpactExt:
     properties=OrderedDict([
         # required properties
         ('impact_type', OpenVocabProperty(vocab.EXTERNAL_IMPACT, required=True)),
-        ('extension_type', StringProperty(fixed=None)),  # needed to indicate it's a sub object extension
     ])
 )
 class ExternalImpactExt:
@@ -68,7 +65,6 @@ class ExternalImpactExt:
     properties=OrderedDict([
         # required properties
         ('alteration', EnumProperty(vocab.INTEGRITY_ALTERATION, required=True)),
-        ('extension_type', StringProperty(fixed=None)),  # needed to indicate it's a sub object extension
         # optional properties
         ('information_type', OpenVocabProperty(vocab.INFORMATION_TYPE)),
         ('record_count', IntegerProperty(min=0)),
@@ -91,7 +87,6 @@ class IntegrityImpactExt:
     properties=OrderedDict([
         # required properties
         ('variety', OpenVocabProperty(vocab.ECONOMIC_IMPACT, required=True)),
-        ('extension_type', StringProperty(fixed=None)),  # needed to indicate it's a sub object extension
         # optional properties
         ('conversion_rate', FloatProperty()),
         ('conversion_time', TimestampProperty()),
@@ -168,7 +163,6 @@ class EconomicImpactExt:
     properties=OrderedDict([
         # required properties
         ('impact_type', EnumProperty(vocab.PHYSICAL_IMPACT, required=True)),
-        ('extension_type', StringProperty(fixed=None)),  # needed to indicate it's a sub object extension
         # optional properties
         ('asset_type', OpenVocabProperty(vocab.ASSET_TYPE))
     ])
@@ -188,7 +182,6 @@ class PhysicalImpactExt:
     properties=OrderedDict([
         # required properties
         ('traceability_impact', EnumProperty(vocab.TRACEABILITY_IMPACT, required=True)),
-        ('extension_type', StringProperty(fixed=None)),  # needed to indicate it's a sub object extension
     ])
 )
 class TraceabilityImpactExt:
